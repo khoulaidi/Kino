@@ -15,7 +15,7 @@
   }*/
 
 
-  //$u2 = new _User("rsdsdss@gmail.com", "te1t12", "Khoulaidi", "Zoubair","adresse1", "10.12.2000","Male");
+  $u2 = new _User("rsdsdss@gmail.com", "te1t12", "Khoulaidi", "Zoubair","adresse1", "10.12.2000","Male");
 
   //Connection::insertUser($u2);
 
