@@ -3,7 +3,7 @@
   require_once("./Class/connection.php");
 
   $host = $_SERVER['HTTP_HOST'];
-  $image_path = $host."/Kino/images/";
+  $image_path = $host."/Kinov2/images/";
 
 
   $user = Connection::loginUser("zoubairbair@gmail.com","test");
