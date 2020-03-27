@@ -63,25 +63,11 @@ class Connection{
       else
         return -1;
     }
-    static function loginUser($mail, $passwort){
-      self::Connect();
-
-      $sql = self::$con->query("SELECT * FROM USER WHERE email = '$mail' AND passwort ='$passwort'");
-
-      if($sql->num_rows > 0){
-        $row = $sql->fetch_array();
-
-        return $row;
-      }
-      else
-        return -1;
-    }
     static function searchUser($mail){
       self::Connect();
 
       $u_id = self::searchUserByMail($mail);
       if($u_id == -1){
-        echo 'User ist nicht da!';
         return false;
       }
 
@@ -103,13 +89,28 @@ class Connection{
         return $user;
       }
       else{
-        echo 'User ist nicht da!';
-        return -1;
+        return false;
       }
+    }
+    static function loginUser($mail, $passwort){
+      self::Connect();
+
+      $user = false;
+
+      $sql = self::$con->query("SELECT * FROM USER WHERE email = '$mail' AND passwort ='$passwort'");
+
+      if($sql->num_rows > 0){
+        $row = $sql->fetch_array();
+        $user = self::searchUser($row["email"]);
+        return $user;
+      }
+      else
+        return false;
     }
 
     static function insertUser($user){
       self::Connect();
+
       $email = $user->getEmail();
       $password = $user->getPasswort();
       $nachname = $user->getNachname();
@@ -120,14 +121,6 @@ class Connection{
 
       $sql = self::$con->query("INSERT INTO USER (email, passwort, nachname, vorname, adresse, geburtsdatum, geschlecht)
       VALUES ('$email', '$password', '$nachname', '$vorname', '$adresse', '$geburtsdatum', '$geschlecht')");
-
-      if($sql == true){
-        echo 'Registrierung erfolgreich!';
-      }
-      else {
-        echo 'Registrierung nicht erfolgreich!';
-      }
-      self::Disconnect();
 
       return $sql;
     }
@@ -147,18 +140,10 @@ class Connection{
         $sql = self::$con->query("UPDATE USER set passwort = '$password', nachname = '$nachname',
           vorname = '$vorname', adresse = '$adresse', geburtsdatum = '$geburtsdatum', geschlecht = '$geschlecht' where id = $u_id");
 
-        if($sql == true){
-          echo 'Updated!';
-          self::Disconnect();
-          return $sql;
-        }
-        else {
-          echo 'Update nicht erfolgreich!';
-          return $sql;
-        }
+        return $sql;
       }
       else {
-        echo 'User nicht da!';
+        return false;
       }
     }
     static function deleteUser($user){
@@ -166,19 +151,13 @@ class Connection{
 
       $u_id = self::searchUserByMail($user->getEmail());
       if($u_id != -1){
+
         $sql = self::$con->query("DELETE FROM USER WHERE id = $u_id");
-        if($sql == true){
-          echo 'Deleted!';
-          self::Disconnect();
-          return $sql;
-        }
-        else {
-          echo 'Delete nicht erfolgreich!';
-          return $sql;
-        }
+
+        return $sql;
       }
       else {
-        echo 'User nicht Da!';
+        return false;
       }
     }
 
@@ -214,7 +193,6 @@ class Connection{
 
       $f_id = self::searchFilmByName($name);
       if($f_id == -1){
-        echo 'Film ist nicht da!';
         return false;
       }
 
@@ -235,8 +213,7 @@ class Connection{
         return $film;
       }
       else{
-        echo 'Film ist nicht da!';
-        return -1;
+        return false;
       }
     }
 
@@ -252,14 +229,6 @@ class Connection{
 
       $sql = self::$con->query("INSERT INTO FILM (name, beschreibung, dauer, date_sortie, autor, image)
       VALUES ('$name', '$beschreibung', '$dauer', '$date_sortie', '$autor', '$image')");
-
-      if($sql == true){
-        echo 'Insert erfolgreich!';
-      }
-      else {
-        echo 'Insert nicht erfolgreich!';
-      }
-      self::Disconnect();
 
       return $sql;
     }
@@ -278,18 +247,11 @@ class Connection{
 
         $sql = self::$con->query("UPDATE FILM set beschreibung = '$beschreibung',
           dauer = '$dauer', date_sortie = '$date_sortie', autor = '$autor', image = '$image' where id = $f_id");
-        if($sql == true){
-          echo 'Updated!';
-          self::Disconnect();
+
           return $sql;
-        }
-        else {
-          echo 'Update nicht erfolgreich!';
-          return $sql;
-        }
       }
       else {
-        echo 'Film nicht Da!';
+        return false;
       }
     }
     static function deleteFilm($film){
@@ -301,18 +263,10 @@ class Connection{
       if($f_id != -1){
         $sql = self::$con->query("DELETE FROM FILM WHERE id = $f_id");
 
-        if($sql == true){
-          echo 'Deleted!';
-          self::Disconnect();
-          return $sql;
-        }
-        else {
-          echo 'Delete nicht erfolgreich!';
-          return $sql;
-        }
+        return $sql;
       }
       else {
-        echo 'Film nicht Da!';
+        return false;
       }
     }
 
@@ -349,7 +303,6 @@ class Connection{
 
       $r_id = self::searchRaumByNummer($nummer);
       if($r_id == -1){
-        echo 'Raum ist nicht da!';
         return false;
       }
 
@@ -365,8 +318,7 @@ class Connection{
         return $raum;
       }
       else{
-        echo 'Raum ist nicht da!';
-        return -1;
+        return false;
       }
     }
 
@@ -388,7 +340,6 @@ class Connection{
       VALUES ('$nummer', '$film_id', '$kapazitat')");
 
       if($sql == true){
-        echo 'Insert erfolgreich!';
         $r_id = self::searchRaumByNummer($raum->getNummer());
         for($i = 1; $i <= $kapazitat; $i++){
           $s = new _Sitz("$i","$r_id");
@@ -396,9 +347,8 @@ class Connection{
         }
       }
       else {
-        echo 'Insert nicht erfolgreich!';
+        return false;
       }
-      self::Disconnect();
 
       return $sql;
     }
@@ -415,7 +365,6 @@ class Connection{
         $sql = self::$con->query("UPDATE RAUM set Film_id = '$film_id', kapazitat = '$kapazitat' where id = $r_id");
 
         if($sql == true){
-          echo 'Updated!';
           $sql_count = self::$con->query("SELECT COUNT(*) As Anzahl FROM SITZ where RAUM_id = $r_id");
           if($sql_count->num_rows > 0){
             $row = $sql_count->fetch_assoc();
@@ -436,16 +385,16 @@ class Connection{
               }
             }
           }
-          self::Disconnect();
-          return $sql;
+          else {
+            return $sql_count;
+          }
         }
         else {
-          echo 'Update nicht erfolgreich!';
           return $sql;
         }
       }
       else {
-        echo 'Raum ist nicht Da!';
+        return false;
       }
     }
     static function deleteRaum($raum){
@@ -454,18 +403,11 @@ class Connection{
       $r_id = self::searchRaumByNummer($raum->getNummer());
       if($r_id != -1){
         $sql = self::$con->query("DELETE FROM RAUM WHERE id = $r_id");
-        if($sql == true){
-          echo 'Deleted!';
-          self::Disconnect();
-          return $sql;
-        }
-        else {
-          echo 'Delete nicht erfolgreich!';
-          return $sql;
-        }
+
+        return $sql;
       }
       else {
-        echo 'Raum ist  nicht Da!';
+        return false;
       }
     }
 
@@ -497,7 +439,7 @@ class Connection{
         return $row;
       }
       else
-        return -1;
+        return false;
     }
     static function listSitze($raum_id){
       self::Connect();
@@ -513,8 +455,7 @@ class Connection{
         return $list;
       }
       else {
-        echo 'Raum ist nicht Da!';
-        return null;
+        return false;
       }
     }
 
@@ -526,20 +467,13 @@ class Connection{
 
       $raum_id = $sitz->getRaum();
       $raum = self::searchRaumById($raum_id);
+
       if($raum == -1){
-        echo 'Raum nicht gefunden!';
         return false;
       }
 
       $sql = self::$con->query("INSERT INTO SITZ (nummer, verfugbar, Raum_id)
       VALUES ('$nummer', '$verfugbar', '$raum_id')");
-
-      /*if($sql == true){
-        echo 'Insert erfolgreich!';
-      }
-      else {
-        echo 'Insert nicht erfolgreich!';
-      }*/
 
       return $sql;
     }
@@ -548,21 +482,18 @@ class Connection{
 
       $sql = self::$con->query("UPDATE SITZ set verfugbar = '$verfugbar' where id = $sitz_id");
 
-      if($sql == true){
-        return true;
-      }
-      else {
-        return false;
-      }
+      return $sql;
     }
     static function deleteSitz($sitz){
 
       $s_id = self::searchSitzByObject($sitz);
       if($s_id != -1){
         $sql = self::$con->query("DELETE FROM SITZ WHERE id = $s_id");
+
+        return $sql;
       }
       else {
-        //echo 'Sitz nicht gefunden!';
+        return false;
       }
     }
 
@@ -603,8 +534,7 @@ class Connection{
         return $termin;
       }
       else{
-        echo 'Termin ist nicht da!';
-        return -1;
+        return false;
       }
     }
     static function listTermine(){
@@ -618,7 +548,6 @@ class Connection{
         }
       }
       else {
-        echo 'Keine Termine!';
         return false;
       }
       return $list;
@@ -650,8 +579,7 @@ class Connection{
         return $row["dauer"];
       }
       else{
-        echo 'Film ist nicht da!';
-        return -1;
+        return false;
       }
     }
     static function checkFilm_Zeit($raum_id, $datum){
@@ -663,6 +591,9 @@ class Connection{
         foreach($array as $row){
 
             $dauer = self::searchDauerById($row["Film_id"]);
+            if($dauer == false){
+              return false;
+            }
             $pause = 30;
             $d = new DateTime($row["datum"]);
             $d->modify("+ {$dauer} minutes");
@@ -670,7 +601,6 @@ class Connection{
 
             $date = $d->format('Y-m-d H:i:s');
 
-            echo $date." ".$datum."<br/>";
             if($date >= $datum){
                 $check = 0;
             }
@@ -688,14 +618,13 @@ class Connection{
 
       $raum_id = $termin->getRaum();
       $datum = $termin->getDatum();
-      $sql = null;
+      $sql = false;
 
       $film = self::searchRaumById($raum_id);
       if($film != -1){
         $film_id = $film["Film_id"];
       }
       else {
-        echo 'Film nicht gefunden!';
         return false;
       }
 
@@ -705,20 +634,11 @@ class Connection{
         $sql = self::$con->query("INSERT INTO TERMIN (Film_id, Raum_id, datum)
         VALUES ('$film_id', '$raum_id', '$datum')");
 
-        if($sql == true){
-          echo 'Insert erfolgreich!';
-        }
-        else {
-          echo 'Insert nicht erfolgreich!';
-        }
+        return $sql;
       }
       else {
-        echo 'Raum ist besetzt!';
-
+        return false;
       }
-
-      self::Disconnect();
-      return $sql;
     }
     static function updateTermin($termin_id, $raum_id, $datum){
       self::Connect();
@@ -735,7 +655,6 @@ class Connection{
         $film_id = $film["Film_id"];
       }
       else {
-        echo 'Film nicht gefunden!';
         return false;
       }
 
@@ -759,6 +678,9 @@ class Connection{
           foreach($list as $row){
 
             $dauer = self::searchDauerById($row["Film_id"]);
+            if($dauer == false){
+              return false;
+            }
             $pause = 30;
             $d = new DateTime($row["datum"]);
               //$d->modify("+ {$dauer} minutes");
@@ -778,22 +700,14 @@ class Connection{
             $sql = self::$con->query("UPDATE TERMIN set Film_id = $film_id, Raum_id = '$raum_id',
                datum = '$date' where id = $termin_id");
 
-            if($sql == true){
-              echo 'Updated!';
-              self::Disconnect();
-              return $sql;
-            }
-            else {
-              echo 'Update nicht erfolgreich!';
-              return $sql;
-            }
+            return $sql;
           }
           else {
-            echo 'Raum ist besetzt!';
+            return false;
           }
         }
         else {
-          echo 'Raum ist besetzt!';
+          return false;
         }
       }
       else{
@@ -803,18 +717,10 @@ class Connection{
           $sql = self::$con->query("UPDATE TERMIN set Film_id = $film_id, Raum_id = '$raum_id',
            datum = '$date' where id = $termin_id");
 
-           if($sql == true){
-             echo 'Updated!';
-             self::Disconnect();
-             return $sql;
-           }
-           else {
-             echo 'Update nicht erfolgreich!';
-             return $sql;
-           }
+          return $sql;
         }
         else {
-          echo 'Raum ist besetzt!';
+          return false;
         }
       }
     }
@@ -822,15 +728,8 @@ class Connection{
       self::Connect();
 
       $sql = self::$con->query("DELETE FROM TERMIN WHERE id = $termin_id");
-      if($sql == true){
-        echo 'Deleted!';
-        self::Disconnect();
-        return $sql;
-      }
-      else {
-        echo 'Delete nicht erfolgreich!';
-        return $sql;
-      }
+
+      return $sql;
     }
 
     //Reservation_Dienste
@@ -849,7 +748,6 @@ class Connection{
         return $reservation;
       }
       else{
-        echo 'Reservation ist nicht da!';
         return false;
       }
     }
@@ -867,8 +765,7 @@ class Connection{
         return $list;
       }
       else {
-        echo 'User ist nicht Da!';
-        return null;
+        return false;
       }
     }
     static function searchReservationById($reservation_id){
@@ -896,15 +793,12 @@ class Connection{
       VALUES ('$termin_id', '$user_id', '$sitz_id')");
 
       if($sql == true){
-        echo 'Insert erfolgreich!';
         self::updateSitz($sitz_id,"0");
+        return $sql;
       }
       else {
-        echo 'Insert nicht erfolgreich!';
+        return false;
       }
-      self::Disconnect();
-
-      return $sql;
     }
     static function updateReservartion($reservation_id, $sitz_id){
       self::Connect();
@@ -914,23 +808,23 @@ class Connection{
 
       if($old != $sitz_id){
         $array = self::searchSitzById($sitz_id);
+        if($array == false){
+          return false;
+        }
         $verfugbar = $array["verfugbar"];
         if($verfugbar != 0) {
           $sql = self::$con->query("UPDATE RESERVATION set Sitz_id = '$sitz_id' where id = $reservation_id" );
 
           if($sql == true){
-            echo 'bin da';
             self::updateSitz($old,"1");
             self::updateSitz($sitz_id,"0");
-            echo 'bin da';
-            return true;
+            return $sql;
           }
           else {
             return false;
           }
         }
         else {
-          echo "Sitz ist besetzt!";
           return false;
         }
       }
@@ -954,12 +848,10 @@ class Connection{
       $sql = self::$con->query("DELETE FROM RESERVATION WHERE id = $reservation_id");
 
       if($sql == true){
-        echo "Deleted";
         self::updateSitz($sitz,"1");
         return true;
       }
       else {
-        echo "Delete nicht erfolgreich!";
         return false;
       }
     }
