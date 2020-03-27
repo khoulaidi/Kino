@@ -27,7 +27,7 @@ class _Sitz{
   }
 
   public function getNummer(){
-    return $this->nummer ;
+    return $this->nummer;
   }
   public function setNummer($nummer){
     if($nummer >= 1 && $nummer <= 50){
