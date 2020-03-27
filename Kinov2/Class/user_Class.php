@@ -1,7 +1,7 @@
 <?php
 
 class _User{
-  
+
   private $id;
   private $email;
   private $passwort;
@@ -15,6 +15,9 @@ class _User{
 
     if(filter_var($email, FILTER_VALIDATE_EMAIL)){
       $this->email = $email;
+    }
+    else {
+      return false;
     }
     $this->passwort = $passwort;
     $this->nachname = $nachname;
@@ -36,7 +39,7 @@ class _User{
   }
 
   public function getEmail(){
-    return $this->email;
+      return $this->email;
   }
   public function setEmail($email){
     if(filter_var($email, FILTER_VALIDATE_EMAIL)){
