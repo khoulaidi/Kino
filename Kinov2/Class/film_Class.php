@@ -82,8 +82,6 @@ class _Film{
     }
     return false;
   }
-
-
 }
 
 ?>
