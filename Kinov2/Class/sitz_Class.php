@@ -11,6 +11,9 @@ class _Sitz{
     if($nummer >= 1 && $nummer <= 50){
       $this->nummer = $nummer;
     }
+    else {
+      return false;
+    }
     $this->raum_id = $raum_id;
     $this->verfugbar = $verfugbar;
 
