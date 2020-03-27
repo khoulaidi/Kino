@@ -102,6 +102,9 @@ class Connection{
       self::Connect();
 
       $email = $user->getEmail();
+      if($email == false){
+        return false;
+      }
       $password = $user->getPasswort();
       $nachname = $user->getNachname();
       $vorname = $user->getVorname();
