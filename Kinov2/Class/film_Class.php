@@ -77,10 +77,7 @@ class _Film{
   public function setImage($image){
     if(filter_var($image, FILTER_VALIDATE_URL)){
       $this->image = $image;
-
-      return true;
     }
-    return false;
   }
 }
 

@@ -707,18 +707,53 @@ class Connection{
               return false;
             }
             $pause = 30;
-            $d = new DateTime($row["datum"]);
+
+            $db_date = $row["datum"];
+
+            $d = new DateTime($db_date);
               //$d->modify("+ {$dauer} minutes");
             $d->modify("+ {$pause} minutes");
 
             $da = $d->format('Y-m-d H:i:s');
 
-            $minutes = (strtotime($da) - strtotime($date)) / 60;
-            if($minutes < 0){
-              $minutes *= -1;
+            if(strtotime($date) > strtotime($db_date)){
+              $d = new DateTime($db_date);
+              $d->modify("+ {$pause} minutes");
+
+              $da = $d->format('Y-m-d H:i:s');
+
+              echo "3. Database: ".$db_date." Gegeben: ".$date." Addition:".$da."<br/>";
+              echo "3. Vor Check: ".$check1."<br/>";
+              $test1 = self::checkFilm_Zeit($raum_id, $date);
+              if($test1 == 0){
+                return false;
+              }
+              if(strtotime($date) < strtotime($da)){
+                  $check1 = 0;
+              }
+              echo "3. Nach Check: ".$check1."<br/>";
             }
-            if($minutes < $dauer){
-                $check1 = 0;
+            else {
+              $d1 = new DateTime($date);
+              $d1->modify("+ {$pause} minutes");
+
+              $da1 = $d1->format('Y-m-d H:i:s');
+
+              $d = new DateTime($db_date);
+              $d->modify("+ {$pause} minutes");
+
+              $da = $d->format('Y-m-d H:i:s');
+
+              echo "4. Database: ".$db_date." Gegeben: ".$date." Gegeben Addition: ".$da1." Database_Addition: ".$da."<br/>";
+              echo "4. Vor Check: ".$check1."<br/>";
+              $test2 = self::checkFilm_Zeit($raum_id, $da1);
+              if($test2 == 0){
+                return false;
+              }
+              if((strtotime($da1) > strtotime($db_date)) && (strtotime($da1) < strtotime($da))){
+                  $check1 = 0;
+              }
+              echo "4. Nach Check: ".$check1."<br/>";
             }
           }
           if($check1 != 0){

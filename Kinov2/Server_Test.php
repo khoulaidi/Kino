@@ -73,12 +73,12 @@
 
   $raum = new _Raum("2", "10", "77");
 
-  if(Connection::insertRaum($raum)){
+  /*if(Connection::insertRaum($raum)){
     echo 'Richtig!';
   }
   else {
     echo 'Falsch!';
-  }
+  }*/
 
   //$raum->setFilm("74");
   //$raum->setKapazitat("5");
@@ -109,9 +109,16 @@
 
   //TERMIN_TEST
 
-  $termin = new _Termin("123", "02.08.2020 03:30:00");
+  $termin = new _Termin("135", "02.08.2020 03:30:00");
 
-  if(Connection::insertTermin($termin)){
+  /*if(Connection::insertTermin($termin)){
+    echo 'Richtig!';
+  }
+  else {
+    echo 'Falsch!';
+  }*/
+
+  if(Connection::updateTermin("124", "135", "04.08.2020 16:31:00")){
     echo 'Richtig!';
   }
   else {

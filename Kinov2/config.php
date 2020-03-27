@@ -3,7 +3,7 @@
   require_once("./Class/connection.php");
 
   $host = $_SERVER['HTTP_HOST'];
-  $image_path = $host."/Kinov2/images/";
+  $image_path = $host."/Kino/images/";
 
   /*static function Test(){
     $sql= "SELECT * FROM FILM WHERE id = 1";
@@ -18,12 +18,12 @@
   $user = Connection::loginUser("zoubairbair@gmail.com","test");
 
   $true = true;
-  if(!$true){
+  /*if(!$true){
     //echo $user->getNachname();
     echo "True";
   }
   else {
     echo "False";
-  }
+  }*/
 
  ?>
