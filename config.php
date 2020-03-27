@@ -17,9 +17,14 @@
   }*/
 
   $joker = new _Film("Night", "Regisseur Simon Verhoeven schickt Elyas M'Barek und Palina Rojinski auf das verrueckteste Date aller Zeiten.",
-     "115", "13.02.2020", "Simon Verhoeven", "http://".$image_path."Narziss.jpg");
+     "115", "13.02.2020", "Simon Verhoeven", "http://".$image_path."Night.jpg");
 
-     Connection::insertFilm($joker);
+     if(Connection::insertFilm($joker)){
+       echo ' gut';
+     }
+     else {
+       echo 'nicht gut';
+     }
 
      echo $joker->convertDatum();
 
