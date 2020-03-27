@@ -441,7 +441,7 @@ class Connection{
 
       $list = array();
       if($raum_id != -1){
-        $sql = self::$con->query("SELECT * FROM SITZ WHERE Raum_id = '$raum_id'");
+        $sql = self::$con->query("SELECT * FROM SITZ WHERE Raum_id = '$raum_id' AND verfugbar = '1'");
         if($sql->num_rows > 0){
           while($row = $sql->fetch_array()){
               $list[] = $row;
