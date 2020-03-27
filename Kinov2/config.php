@@ -4,7 +4,7 @@
 
   echo $_SERVER['PHP_SELF'];
   $host = $_SERVER['HTTP_HOST'];
-  $image_path = $host."/Kino/images/";
+  $image_path = $host."/Kinov2/images/";
 
   //echo '<img src="http://'.$image_path.'Joker.jpg" />';
 
