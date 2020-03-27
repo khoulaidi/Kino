@@ -2,6 +2,8 @@
 require_once("connection.php");
 
 class _Reservation{
+
+  private $id;
   private $termin_id;
   private $user_id;
   private $sitz_id;
@@ -10,6 +12,13 @@ class _Reservation{
     $this->termin_id = $termin_id;
     $this->user_id = $user_id;
     $this->sitz_id = $sitz_id;
+  }
+
+  public function getId(){
+    return $this->id;
+  }
+  public function setId($id){
+    $this->id =$id;
   }
 
   public function getTermin(){

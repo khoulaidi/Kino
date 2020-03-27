@@ -2,8 +2,9 @@
 <?php
   require_once("./Class/connection.php");
 
+  echo $_SERVER['PHP_SELF'];
   $host = $_SERVER['HTTP_HOST'];
-  $image_path = $host."/Kinov2/images/";
+  $image_path = $host."/Kino/images/";
 
   //echo '<img src="http://'.$image_path.'Joker.jpg" />';
 
@@ -15,12 +16,12 @@
   }*/
 
 
-  $u2 = new _User("rsdsdss@gmail.com", "te1t12", "Khoulaidi", "Zoubair","adresse1", "10.12.2000","Male");
+  //$u2 = new _User("rsdsdss@gmail.com", "te1t12", "Khoulaidi", "Zoubair","adresse1", "10.12.2000","Male");
 
   //Connection::insertUser($u2);
 
   $f1 = new _Film("Atdsdscs", "sfdads", "156", "10.12.2001","Zoubair","http://".$image_path."Joker.jpg");
-  Connection::insertFilm($f1);
+  //Connection::insertFilm($f1);
   $r1 = new _Raum("3","4","2");
 
   //$s1 = new _Sitz("1","96");
@@ -45,13 +46,18 @@
   $termin1 = Connection::searchTermin("51");
   $reservation1 = new _Reservation("53","1","272");
 
-  $joker->setBeschreibung("Beschreibung");
+  //$joker->setBeschreibung("Beschreibung");
 
 //  Connection::deleteFilm($avatar);
+  //$reservation2 = Connection::searchReservation("6");
 
+  //$array = Connection::searchUserReservation("1");
+
+  //Connection::deleteReservation("15");
+  //echo $reservation2->getId();
   //£Connection::insertReservation($reservation1);
-  echo "<br/>Ticket: <br/>";
-  echo $reservation1->__toString();
+  //echo "<br/>Ticket: <br/>";
+  //echo $reservation1->__toString();
   //print_r(Connection::listSitze("106"));
   //Connection::deleteTermin("59");
 

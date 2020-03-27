@@ -1,6 +1,7 @@
 <?php
 
 class _User{
+  
   private $id;
   private $email;
   private $passwort;
@@ -29,6 +30,9 @@ class _User{
 
   public function getId(){
     return $this->id;
+  }
+  public function setId($id){
+    $this->id =$id;
   }
 
   public function getEmail(){

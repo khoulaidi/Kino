@@ -85,8 +85,7 @@ class Connection{
         return false;
       }
 
-      $sql = self::$con->query("SELECT email, passwort, nachname, vorname, adresse, geschlecht, geburtsdatum
-         FROM USER WHERE id = '$u_id'");
+      $sql = self::$con->query("SELECT * FROM USER WHERE id = '$u_id'");
 
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
@@ -98,6 +97,8 @@ class Connection{
 
         $user = new _User($row["email"], $row["passwort"], $row["nachname"], $row["vorname"], $row["adresse"], "$date",
          $row["geschlecht"]);
+
+        $user->setId($row["id"]);
 
         return $user;
       }
@@ -217,7 +218,7 @@ class Connection{
         return false;
       }
 
-      $sql = self::$con->query("SELECT name, beschreibung, dauer, date_sortie, autor, image FROM FILM WHERE id = '$f_id'");
+      $sql = self::$con->query("SELECT * FROM FILM WHERE id = '$f_id'");
 
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
@@ -228,6 +229,8 @@ class Connection{
         $date = $d->format('d.m.Y');
 
         $film = new _Film($row["name"], $row["beschreibung"], $row["dauer"], "$date", $row["autor"], $row["image"]);
+
+        $film->setId($row["id"]);
 
         return $film;
       }
@@ -350,12 +353,14 @@ class Connection{
         return false;
       }
 
-      $sql = self::$con->query("SELECT nummer, Film_id, kapazitat FROM RAUM WHERE id = '$r_id'");
+      $sql = self::$con->query("SELECT * FROM RAUM WHERE id = '$r_id'");
 
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
 
         $raum = new _Raum($row["nummer"], $row["Film_id"], $row["kapazitat"]);
+
+        $raum->setId($row["id"]);
 
         return $raum;
       }
@@ -499,7 +504,7 @@ class Connection{
 
       $list = array();
       if($raum_id != -1){
-        $sql = self::$con->query("SELECT nummer, verfugbar FROM SITZ WHERE Raum_id = '$raum_id'");
+        $sql = self::$con->query("SELECT * FROM SITZ WHERE Raum_id = '$raum_id'");
         if($sql->num_rows > 0){
           while($row = $sql->fetch_array()){
               $list[] = $row;
@@ -582,7 +587,7 @@ class Connection{
     static function searchTermin($termin_id){
       self::Connect();
 
-      $sql = self::$con->query("SELECT Film_id, Raum_id, datum FROM TERMIN WHERE id = '$termin_id'");
+      $sql = self::$con->query("SELECT * FROM TERMIN WHERE id = '$termin_id'");
 
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
@@ -592,6 +597,8 @@ class Connection{
         $date = $d->format('d.m.Y H:i:s');
 
         $termin = new _Termin($row["Raum_id"], "$date", $row["Film_id"]);
+
+        $termin->setId($row["id"]);
 
         return $termin;
       }
@@ -604,7 +611,7 @@ class Connection{
       self::Connect();
 
       $list = array();
-      $sql = self::$con->query("SELECT Film_id, Raum_id, datum FROM TERMIN");
+      $sql = self::$con->query("SELECT * FROM TERMIN");
       if($sql->num_rows > 0){
         while($row = $sql->fetch_array()){
             $list[] = $row;
@@ -620,7 +627,7 @@ class Connection{
       self::Connect();
 
       $list = array();
-      $sql = self::$con->query("SELECT Film_id, Raum_id, datum FROM TERMIN where Raum_id = '$raum_id'");
+      $sql = self::$con->query("SELECT * FROM TERMIN where Raum_id = '$raum_id'");
       if($sql->num_rows > 0){
         while($row = $sql->fetch_array()){
             $list[] = $row;
@@ -835,13 +842,33 @@ class Connection{
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
 
-        $reservation = new _Termin($row["Termin_id"], $row["User_id"], $row["Sitz_id"]);
+        $reservation = new _Reservation($row["Termin_id"], $row["User_id"], $row["Sitz_id"]);
+
+        $reservation->setId($row["id"]);
 
         return $reservation;
       }
       else{
-        echo 'Termin ist nicht da!';
-        return -1;
+        echo 'Reservation ist nicht da!';
+        return false;
+      }
+    }
+    static function searchUserReservation($user_id){
+      self::Connect();
+
+      $list = array();
+      if($user_id != -1){
+        $sql = self::$con->query("SELECT * FROM RESERVATION WHERE User_id = '$user_id'");
+        if($sql->num_rows > 0){
+          while($row = $sql->fetch_array()){
+              $list[] = $row;
+          }
+        }
+        return $list;
+      }
+      else {
+        echo 'User ist nicht Da!';
+        return null;
       }
     }
     static function searchReservationById($reservation_id){
@@ -862,7 +889,6 @@ class Connection{
       self::Connect();
 
       $termin_id = $reservation->getTermin();
-
       $user_id = $reservation->getUser();
       $sitz_id = $reservation->getSitz();
 
@@ -879,6 +905,63 @@ class Connection{
       self::Disconnect();
 
       return $sql;
+    }
+    static function updateReservartion($reservation_id, $sitz_id){
+      self::Connect();
+
+      $reservation = self::searchReservation($reservation_id);
+      $old = $reservation->getSitz();
+
+      if($old != $sitz_id){
+        $array = self::searchSitzById($sitz_id);
+        $verfugbar = $array["verfugbar"];
+        if($verfugbar != 0) {
+          $sql = self::$con->query("UPDATE RESERVATION set Sitz_id = '$sitz_id' where id = $reservation_id" );
+
+          if($sql == true){
+            echo 'bin da';
+            self::updateSitz($old,"1");
+            self::updateSitz($sitz_id,"0");
+            echo 'bin da';
+            return true;
+          }
+          else {
+            return false;
+          }
+        }
+        else {
+          echo "Sitz ist besetzt!";
+          return false;
+        }
+      }
+      else {
+        return true;
+      }
+    }
+    static function deleteReservation($reservation_id){
+      self::Connect();
+
+      $sitz = 0;
+      $reservation = self::searchReservation($reservation_id);
+
+      if($reservation != false){
+        $sitz = $reservation->getSitz();
+      }
+      else {
+        return false;
+      }
+
+      $sql = self::$con->query("DELETE FROM RESERVATION WHERE id = $reservation_id");
+
+      if($sql == true){
+        echo "Deleted";
+        self::updateSitz($sitz,"1");
+        return true;
+      }
+      else {
+        echo "Delete nicht erfolgreich!";
+        return false;
+      }
     }
 }
 ?>

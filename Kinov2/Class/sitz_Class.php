@@ -1,6 +1,8 @@
 <?php
 
 class _Sitz{
+
+  private $id;
   private $nummer;
   private $verfugbar;
   private $raum_id;
@@ -12,6 +14,13 @@ class _Sitz{
     $this->raum_id = $raum_id;
     $this->verfugbar = $verfugbar;
 
+  }
+
+  public function getId(){
+    return $this->id;
+  }
+  public function setId($id){
+    $this->id =$id;
   }
 
   public function getNummer(){

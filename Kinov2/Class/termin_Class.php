@@ -2,6 +2,8 @@
 require_once("connection.php");
 
 class _Termin{
+
+  private $id;
   private $film_id;
   private $raum_id;
   private $datum;
@@ -13,6 +15,13 @@ class _Termin{
     $d = DateTime::createFromFormat('d.m.Y H:i:s', $datum);
     $date = $d->format('Y-m-d H:i:s');
     $this->datum = $date;
+  }
+
+  public function getId(){
+    return $this->id;
+  }
+  public function setId($id){
+    $this->id =$id;
   }
 
   public function getFilm(){
