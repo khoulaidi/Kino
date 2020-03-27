@@ -44,12 +44,17 @@ class _Termin{
   public function getDatum(){
     return $this->datum;
   }
+  public function convertDatum(){
+    $d = strtotime($this->datum);
+    $date = date('d.m.Y H:i', $d);
+    return $date;
+  }
   public function setDatum($datum){
     $d = DateTime::createFromFormat('d.m.Y H:i:s', $datum);
     if($d == false){
       return false;
     }
-    $date = $d->format('Y-m-d');
+    $date = $d->format('Y-m-d H:i:s');
     $this->datum = $date;
   }
 
