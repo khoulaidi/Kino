@@ -453,7 +453,7 @@ class Connection{
     }
 
     static function insertSitz($sitz){
-
+      self::Connect();
       $nummer = $sitz->getNummer();
 
       $verfugbar = $sitz->getVerfugbar();
@@ -518,6 +518,9 @@ class Connection{
 
         $datum = $row["datum"];
         $d = DateTime::createFromFormat('Y-m-d H:i:s', $datum);
+        if($d == false){
+          return false;
+        }
         $date = $d->format('d.m.Y H:i:s');
 
         $termin = new _Termin($row["Raum_id"], "$date", $row["Film_id"]);
@@ -576,6 +579,7 @@ class Connection{
       }
     }
     static function checkFilm_Zeit($raum_id, $datum){
+      self::Connect();
 
       $check = 1;
       $array = self::listTermineByRaum($raum_id);
@@ -588,14 +592,41 @@ class Connection{
               return false;
             }
             $pause = 30;
-            $d = new DateTime($row["datum"]);
-            $d->modify("+ {$dauer} minutes");
-            $d->modify("+ {$pause} minutes");
+            $date = $row["datum"];
 
-            $date = $d->format('Y-m-d H:i:s');
+            if(strtotime($datum) > strtotime($date)){
+              $d = new DateTime($date);
+              $d->modify("+ {$dauer} minutes");
+              $d->modify("+ {$pause} minutes");
 
-            if($date >= $datum){
-                $check = 0;
+              $da = $d->format('Y-m-d H:i:s');
+
+              echo "1. Database: ".$date." Gegeben: ".$datum." Addition:".$da."<br/>";
+              echo "1. Vor Check: ".$check."<br/>";
+              if(strtotime($datum) < strtotime($da)){
+                  $check = 0;
+              }
+              echo "1. Nach Check: ".$check."<br/>";
+            }
+            else {
+              $d1 = new DateTime($date);
+              $d1->modify("+ {$dauer} minutes");
+              $d1->modify("+ {$pause} minutes");
+
+              $da1 = $d1->format('Y-m-d H:i:s');
+
+              $d = new DateTime($datum);
+              $d->modify("+ {$dauer} minutes");
+              $d->modify("+ {$pause} minutes");
+
+              $da = $d->format('Y-m-d H:i:s');
+
+              echo "2. Database: ".$date." Gegeben: ".$datum." Gegeben Addition: ".$da." Database_Addition: ".$da1."<br/>";
+              echo "2. Vor Check: ".$check."<br/>";
+              if((strtotime($da) > strtotime($date)) && (strtotime($da) < strtotime($da1))){
+                  $check = 0;
+              }
+              echo "2. Nach Check: ".$check."<br/>";
             }
         }
       }
@@ -604,14 +635,15 @@ class Connection{
       }
       return $check;
     }
-
     static function insertTermin($termin){
       self::Connect();
 
 
       $raum_id = $termin->getRaum();
       $datum = $termin->getDatum();
-      $sql = false;
+      if($datum == false){
+       return false;
+      }
 
       $film = self::searchRaumById($raum_id);
       if($film != -1){
