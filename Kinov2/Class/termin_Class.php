@@ -13,6 +13,9 @@ class _Termin{
     $this->raum_id = $raum_id;
 
     $d = DateTime::createFromFormat('d.m.Y H:i:s', $datum);
+    if($d == false){
+      return false;
+    }
     $date = $d->format('Y-m-d H:i:s');
     $this->datum = $date;
   }
@@ -43,6 +46,9 @@ class _Termin{
   }
   public function setDatum($datum){
     $d = DateTime::createFromFormat('d.m.Y H:i:s', $datum);
+    if($d == false){
+      return false;
+    }
     $date = $d->format('Y-m-d');
     $this->datum = $date;
   }
