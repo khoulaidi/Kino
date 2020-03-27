@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 	<head>
-  
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +14,7 @@
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">		
+	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
 	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
 	<link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
 	<link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
@@ -25,8 +25,8 @@
 		<!-- Custom styles for this template -->
 		<link href="album.css" rel="stylesheet">
 	</head>
-  
-	
+
+
     <header>
 		<div class="collapse bg-dark" id="navbarHeader">
 			<div class="container">
@@ -68,7 +68,7 @@
 		<br>
 		<div class="container" style="background-color:EBF7E3">
 			<div class="py-5 text-center">
-			
+
 			<h2><u>Registrierung</u></h2>
 			<p class="lead">Geben sie bitte ihre Personale Daten ein und dann auf bestätigen drücken damit ihre Regestrierung abschließen.</p>
 			</div>
@@ -86,14 +86,12 @@
 					</label>
 				</div>
 		<br>
-				<form class="needs-validation" novalidate>
+				<form action="Startseite.php" method="POST" class="needs-validation" novalidate>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">Vorname</label>
-							<input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-							<div class="invalid-feedback">
-								Ein gültiger Vorname ist erforderlich.
-							</div>
+							<input type="text" class="form-control" id="firstName" placeholder="" value="Vorname" name="vorname" required>
+
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="lastName">Nachname</label>
@@ -109,7 +107,7 @@
                         <input type="date" id="birthDate" class="form-control">
                     </div>
                 </div>
-       
+
 
         <div class="mb-3">
           <label for="email">Email</label>
@@ -130,15 +128,15 @@
 		 <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block" type="submit">Bestätigen</button>
 	</div>
-	
-	
+
+
 </div>
-<br>	
+<br>
 </main>
 <footer class="text-muted" style="background-color:#212529">
 	<div class="container"style="background-color:#212529">
 		<p class="float-right">
-		
+
 			<a href="#">Back to top</a>
 			<br>#diese Webseite steht immer noch in test phase (Beta)
 		</p>
@@ -153,5 +151,3 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
-
-

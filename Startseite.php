@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 	<head>
-  
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +14,7 @@
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">		
+	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
 	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
 	<link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
 	<link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
@@ -61,13 +61,13 @@
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
-		
+
 		</style>
 		<!-- Custom styles for this template -->
 		<link href="album.css" rel="stylesheet">
 	</head>
-  
-	
+
+
     <header>
 		<div class="collapse bg-dark" id="navbarHeader">
 			<div class="container">
@@ -96,7 +96,7 @@
 				<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Anmelden</strong>
 				</a>
-				<a href="file:///C:/Users/ahmed/Desktop/Kino/Regestrieren.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				<a href="Regestrieren.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Registrieren</strong>
 				</a>
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,24 +124,24 @@
 								<div style="color:#B1A296" class="slide-title h2 col-xs-24">Demnächst verfügbar</div>
 						</div>
 					</div>
-	
+
 					<div class="carousel-item">
 						<img src="https://m.media-amazon.com/images/M/MV5BMjQ2ODIyMjY4MF5BMl5BanBnXkFtZTgwNzY4ODI2NzM@._V1_.jpg" alt="Chicago" width="1100" height="500">
 							<div style="color:#B1A296"class="slide-title h2 col-xs-24">Demnächst verfügbar</div>
 					</div>
-    
+
 					<div class="carousel-item">
 						<img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Movie_poster_for_%22Scary_Movie%22.jpg/220px-Movie_poster_for_%22Scary_Movie%22.jpg" alt="Chicago" width="1100" height="500">
 							<div style="color:#B1A296"class="slide-title h2 col-xs-24">Demnächst verfügbar</div>
 					</div>
-	
+
 					<div class="carousel-item">
 						<img src="https://cdn.eventcinemas.co.nz/cdn/resources/movies/14819/images/largeposter.jpg" alt="Chicago" width="1100" height="500">
 							<div style="color:#B1A296"class="slide-title h2 col-xs-24">Demnächst verfügbar</div>
 					</div>
 
 				</div>
-  
+
 				<!-- Left and right controls -->
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
@@ -150,12 +150,12 @@
 					<span class="carousel-control-next-icon"></span>
 				</a>
 			</div>
-     
- 
-		
+
+
+
 		<div class="album py-5 bg-light"   >
 			<div class="container">
-				<div class="row">	
+				<div class="row">
 					<div class="col-md-4">
 						<div id="morbius"class="card mb-4 shadow-sm">
 							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/26001-172388poster1-posterjpg.jpg?h=477&iar=1&w=319" alt="Chicago">
@@ -166,9 +166,9 @@
 								<p class="card-text"> <b>Dauer:</b> 96 mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
-									
+
 	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm1()">Reservieren</button>
-</div>   
+</div>
 
 
 								</div>
@@ -184,7 +184,7 @@
 							</div>
 						</div>
 					</div>
-		
+
 					<div id="peterhase2"class="col-md-4">
 						<div class="card mb-4 shadow-sm">
 							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/26493-170129poster4-posterjpg.jpg?h=477&iar=1&w=319" alt="Chicago">
@@ -195,9 +195,9 @@
 								<p class="card-text"> <b>Dauer:</b> 80 mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
 																		<div class="btn-group">
-									
+
 	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm2()">Reservieren</button>
-</div>   
+</div>
 
 
 								</div>
@@ -224,9 +224,9 @@
 								<p class="card-text"> <b>Dauer:</b> 122 mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
 																		<div class="btn-group">
-									
+
 	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm3()">Reservieren</button>
-</div>   
+</div>
 
 
 								</div>
@@ -241,7 +241,7 @@
 								</div>
 							</div>
 						</div>
-					</div>		
+					</div>
 
 					<div id="narziss"class="col-md-4">
 						<div class="card mb-4 shadow-sm">
@@ -253,9 +253,9 @@
 								<p class="card-text"> <b>Dauer:</b> 118 mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
 																		<div class="btn-group">
-									
+
 	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm4()">Reservieren</button>
-</div>   
+</div>
 
 
 								</div>
@@ -282,26 +282,26 @@
 								<p class="card-text"> <b>Dauer:</b> 115 mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
-									
+
 	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm5()">Reservieren</button>
-</div>   
+</div>
 
 
 								</div>
 								<div class="form-popup" id="RF5">
 
 
-								<button type="button" class="btn btn-secondary" style onclick=>22.04.20  18 uhr</button><br>
+								<button type="button" class="btn btn-secondary" name="id_Termin" style onclick=>22.04.20  18 uhr</button><br>
 								<button type="button" class="btn btn-secondary" onclick=>22.04.20  22 uhr</button><br>
 								<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
 								<button type="button" class="btn cancel" onclick="closeForm5()" style="background-color:red">zurück</button>
 									</form>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
-       
+
 					<div id="hotel"class="col-md-4">
 						<div class="card mb-4 shadow-sm">
 							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/27095-100901658cxxposter1-posterjpg.jpg"style="height: 477px;"alt="joki">
@@ -312,9 +312,9 @@
 								<p class="card-text"> <b>Dauer:</b> 106 mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
 <div class="btn-group">
-									
+
 	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm()">Reservieren</button>
-</div>   
+</div>
 
 
 								</div>
@@ -330,12 +330,12 @@
 							</div>
 						</div>
 					</div>
-					
-					
+
+
 				</div>
 			</div>
 		</div>
-		
+
 
 <script>
 function openForm() {
@@ -385,7 +385,7 @@ function closeForm5() {
 <footer class="text-muted" style="background-color:#212529">
 	<div class="container"style="background-color:#212529">
 		<p class="float-right">
-		
+
 			<a href="#">Back to top</a>
 			<br>#diese Webseite steht immer noch in test phase (Beta)
 		</p>
