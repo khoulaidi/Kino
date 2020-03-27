@@ -15,5 +15,12 @@
       echo '<img src ="'.$row["image"].'" width="25%" />';
     }
   }*/
-dsadasdsa
+
+  $joker = new _Film("Night", "Regisseur Simon Verhoeven schickt Elyas M'Barek und Palina Rojinski auf das verrueckteste Date aller Zeiten.",
+     "115", "13.02.2020", "Simon Verhoeven", "http://".$image_path."Narziss.jpg");
+
+     Connection::insertFilm($joker);
+
+     echo $joker->convertDatum();
+
  ?>
