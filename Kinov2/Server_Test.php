@@ -83,12 +83,12 @@
   $raum->setFilm("77");
   $raum->setKapazitat("10");
   //$raum->setKapazitat("10"); SITZE WERDEN AUTOMATISCH HINZUGEFÜGT ODER GELÖSCHT SEIN
-  if(Connection::updateRaum($raum)){
+  /*if(Connection::updateRaum($raum)){
     echo 'Richtig!';
   }
   else {
     echo 'Falsch!';
-  }
+  }*/
 
   /*if(Connection::deleteRaum("129")){
     echo 'Richtig!';
@@ -124,6 +124,38 @@
   else {
     echo 'Falsch!';
   }*/
+
+  /*if(Connection::deleteTermin("124")){
+    echo 'Richtig!';
+  }
+  else {
+    echo 'Falsch!';
+  }*/
+
+
+  $reservation = new _Reservation("125","33","381");
+
+  /*if(Connection::insertReservation($reservation)){
+    echo 'Richtig!';
+  }
+  else {
+    echo 'Falsch!';
+  }*/
+
+
+  /*if(Connection::updateReservartion("16", "380")){
+    echo 'Richtig!';
+  }
+  else {
+    echo 'Falsch!';
+  }*/
+
+  if(Connection::deleteReservation("16")){
+    echo 'Richtig!';
+  }
+  else {
+    echo 'Falsch!';
+  }
 
 
 

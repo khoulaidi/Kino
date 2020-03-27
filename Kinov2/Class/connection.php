@@ -603,12 +603,9 @@ class Connection{
 
               $da = $d->format('Y-m-d H:i:s');
 
-              echo "1. Database: ".$date." Gegeben: ".$datum." Addition:".$da."<br/>";
-              echo "1. Vor Check: ".$check."<br/>";
               if(strtotime($datum) < strtotime($da)){
                   $check = 0;
               }
-              echo "1. Nach Check: ".$check."<br/>";
             }
             else {
               $d1 = new DateTime($date);
@@ -623,12 +620,9 @@ class Connection{
 
               $da = $d->format('Y-m-d H:i:s');
 
-              echo "2. Database: ".$date." Gegeben: ".$datum." Gegeben Addition: ".$da." Database_Addition: ".$da1."<br/>";
-              echo "2. Vor Check: ".$check."<br/>";
               if((strtotime($da) > strtotime($date)) && (strtotime($da) < strtotime($da1))){
                   $check = 0;
               }
-              echo "2. Nach Check: ".$check."<br/>";
             }
         }
       }
@@ -724,8 +718,6 @@ class Connection{
 
               $da = $d->format('Y-m-d H:i:s');
 
-              echo "3. Database: ".$db_date." Gegeben: ".$date." Addition:".$da."<br/>";
-              echo "3. Vor Check: ".$check1."<br/>";
               $test1 = self::checkFilm_Zeit($raum_id, $date);
               if($test1 == 0){
                 return false;
@@ -733,7 +725,6 @@ class Connection{
               if(strtotime($date) < strtotime($da)){
                   $check1 = 0;
               }
-              echo "3. Nach Check: ".$check1."<br/>";
             }
             else {
               $d1 = new DateTime($date);
@@ -746,8 +737,6 @@ class Connection{
 
               $da = $d->format('Y-m-d H:i:s');
 
-              echo "4. Database: ".$db_date." Gegeben: ".$date." Gegeben Addition: ".$da1." Database_Addition: ".$da."<br/>";
-              echo "4. Vor Check: ".$check1."<br/>";
               $test2 = self::checkFilm_Zeit($raum_id, $da1);
               if($test2 == 0){
                 return false;
@@ -755,7 +744,6 @@ class Connection{
               if((strtotime($da1) > strtotime($db_date)) && (strtotime($da1) < strtotime($da))){
                   $check1 = 0;
               }
-              echo "4. Nach Check: ".$check1."<br/>";
             }
           }
           if($check1 != 0){
