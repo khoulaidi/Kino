@@ -369,6 +369,7 @@ class Connection{
                 $s = new _Sitz("$j","$r_id");
                 self::insertSitz($s);
               }
+              return true;
             }
             else{
               while($anz > $kapazitat){
@@ -376,6 +377,7 @@ class Connection{
                 self::deleteSitz($s);
                 $anz--;
               }
+              return true;
             }
           }
           else {

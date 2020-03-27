@@ -80,15 +80,15 @@
     echo 'Falsch!';
   }*/
 
-  //$raum->setFilm("74");
-  //$raum->setKapazitat("5");
+  $raum->setFilm("77");
+  $raum->setKapazitat("10");
   //$raum->setKapazitat("10"); SITZE WERDEN AUTOMATISCH HINZUGEFÜGT ODER GELÖSCHT SEIN
-  /*if(Connection::updateRaum("122","77","5")){
+  if(Connection::updateRaum($raum)){
     echo 'Richtig!';
   }
   else {
     echo 'Falsch!';
-  }*/
+  }
 
   /*if(Connection::deleteRaum("129")){
     echo 'Richtig!';
@@ -118,12 +118,14 @@
     echo 'Falsch!';
   }*/
 
-  if(Connection::updateTermin("124", "135", "04.08.2020 16:31:00")){
+  /*if(Connection::updateTermin("124", "135", "04.08.2020 16:31:00")){
     echo 'Richtig!';
   }
   else {
     echo 'Falsch!';
-  }
+  }*/
+
+
 
   Connection::Disconnect();
 ?>
