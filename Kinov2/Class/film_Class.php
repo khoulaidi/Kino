@@ -64,6 +64,12 @@ class _Film{
     $this->date_sortie = $date;
   }
 
+  public function convertDatum(){
+    $d = strtotime($this->date_sortie);
+    $date = date('d F Y', $d);
+    return $date;
+  }
+
   public function getAutor(){
     return $this->autor;
   }
