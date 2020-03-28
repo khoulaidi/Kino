@@ -1,7 +1,26 @@
+<?php
+require_once("config.php");
+start_session();
+if(isset($_POST["submit"])){
+	$mail = $_POST["email"];
+	$passwort = $_POST["passwort"];
+	$user = loginUser($mail, $passwort);
+
+	if(!$user){
+
+	}
+	else {
+		$user_id = $user->getId();
+		$_Session["$user_id"] = $user_id;
+	}
+}
+
+ ?>
+
 <!doctype html>
 <html lang="en">
 	<head>
-  
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +33,7 @@
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">		
+	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
 	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
 	<link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
 	<link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
@@ -25,8 +44,8 @@
 		<!-- Custom styles for this template -->
 		<link href="album.css" rel="stylesheet">
 	</head>
-  
-	
+
+
     <header>
 		<div class="collapse bg-dark" id="navbarHeader">
 			<div class="container">
@@ -52,10 +71,10 @@
 				<a href="file:///C:/Users/ahmed/Desktop/Startseite.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-				<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				<a href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Anmelden</strong>
 				</a>
-				<a href="file:///C:/Users/ahmed/Desktop/Kino/Regestrieren.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				<a href="Regestrieren.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Registrieren</strong>
 				</a>
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,17 +95,17 @@
 <br>
 <br>
     <form class="form-signin" method="post">
-  
+
   <h1 class="h3 mb-3 font-weight-normal" style="color:white">Hier Anmelden</h1>
   <label for="inputEmail" class="sr-only">Email address</label>
- <center> <input type="email" id="inputEmail" class="form-control" style="width:25%" placeholder="Email address" required autofocus></center><br>
+ <center> <input type="email" id="inputEmail" class="form-control" style="width:25%" placeholder="Email address" name="email" required autofocus></center><br>
 
   <label for="inputPassword" class="sr-only">Kennwort</label>
-  <center><input type="password" id="inputPassword" class="form-control" style="width:25%"  placeholder="Kennwort" required></center>
+  <center><input type="password" id="inputPassword" class="form-control" style="width:25%"  placeholder="Kennwort" name="passwort" required></center>
  <br>
  <br>
  <br>
-  <center><button class="btn btn-lg btn-primary btn-block" style="width:15%" type="submit">Einlogen</button></center>
+  <center><button class="btn btn-lg btn-primary btn-block" style="width:15%" type="submit" name="submit">Einlogen</button></center>
   <p class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
 </form>
 <br>
@@ -105,7 +124,7 @@
 <footer class="text-muted" style="background-color:#212529">
 	<div class="container"style="background-color:#212529">
 		<p class="float-right">
-		
+
 			<a href="#">Back to top</a>
 			<br>#diese Webseite steht immer noch in test phase (Beta)
 		</p>

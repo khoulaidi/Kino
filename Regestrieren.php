@@ -49,13 +49,13 @@
 		</div>
 		<div class="navbar navbar-dark bg-dark shadow-sm">
 			<div class="container d-flex justify-content-between">
-				<a href="file:///C:/Users/ahmed/Desktop/Startseite.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
+				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-				<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				<a href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Anmelden</strong>
 				</a>
-				<a href="file:///C:/Users/ahmed/Desktop/Kino/Regestrieren.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				<a href="Regestrieren.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Registrieren</strong>
 				</a>
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,13 +68,12 @@
 		<br>
 		<div class="container" style="background-color:EBF7E3">
 			<div class="py-5 text-center">
-
 			<h2><u>Registrierung</u></h2>
-			<p class="lead">Geben sie bitte ihre Personale Daten ein und dann auf bestätigen drücken damit ihre Regestrierung abschließen.</p>
+			<p class="lead">Geben sie bitte ihre Personale Daten ein und dann auf Bestätigen drücken damit ihre Regestrierung abschließen.</p>
 			</div>
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">-Mein Daten:</h4>
-				<p> Geschlecht:</p>
+				<h6> Geschlecht:</h6>
 				<div class="form-check">
 					<label class="form-check-label">
 						<input type="radio" class="form-check-input" name="optradio">Frau
@@ -86,49 +85,58 @@
 					</label>
 				</div>
 		<br>
-				<form action="Startseite.php" method="POST" class="needs-validation" novalidate>
+		<p>*Achtung*: bitte die folgende buschtabe nicht nutzen:ü,Ü,ö,Ö,ä,Ä.  </p>
+				<!--<form  method="POST" class="needs-validation" novalidate>-->
+	<form action="" class="was-validated">
+  <div class="form-group">
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="firstName">Vorname</label>
-							<input type="text" class="form-control" id="firstName" placeholder="" value="Vorname" name="vorname" required>
-
+							<label for="firstName"><h6>Vorname<h6></label>
+							<input type="text" class="form-control" id="firstName" placeholder="" value="" name="vorname" required>
+							<div class="invalid-feedback">
+								Ein gültiger Nachname ist erforderlich.
+							</div>
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="lastName">Nachname</label>
+							<label for="lastName"><h6>Nachname<h6></label>
 							<input type="text" class="form-control" id="lastName" placeholder="" value="" required>
 							<div class="invalid-feedback">
 								Ein gültiger Nachname ist erforderlich.
 							</div>
 						</div>
 					</div>
+				</div>
+			</form>
 				<div class="form-group">
-                    <label for="birthDate" class="ol-md-6 mb-3">Geburtsdatum</label>
+                    <label for="birthDate" class="ol-md-6 mb-3"><h6>Geburtsdatum<h6></label>
                     <div class="rows">
-                        <input type="date" id="birthDate" class="form-control">
+                        <input type="date" id="birthDate" class="form-control" style="width:100%">
                     </div>
                 </div>
 
-
+		<form action="" class="was-validated">
+			<div class="form-group">
         <div class="mb-3">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email">
+          <label for="email"><h6>Email<h6></label>
+          <input type="email" class="form-control" id="email" style="width:150%" required>
           <div class="invalid-feedback">
             Ein gültiger Email ist erforderlich.
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" placeholder="goblinstraße-3 66117 saarland" required>
+          <label for="address"><h6>Address<h6></label>
+          <input type="text" class="form-control" id="address" style="width:150%" placeholder="goblinstraße-3 66117 saarland" required>
           <div class="invalid-feedback">
             Eine gültige Adresse ist erforderlich.
           </div>
         </div>
-		</form>
-		 <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Bestätigen</button>
-	</div>
 
+		 <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit" name="regestrieren">Bestätigen</button>
+	</div>
+</div>
+	</form>
 
 </div>
 <br>

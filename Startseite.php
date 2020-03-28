@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -90,10 +92,10 @@
 		</div>
 		<div class="navbar navbar-dark bg-dark shadow-sm">
 			<div class="container d-flex justify-content-between">
-				<a href="file:///C:/Users/ahmed/Desktop/Kino/Startseite.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
+				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-				<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				<a id="anmelden" href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Anmelden</strong>
 				</a>
 				<a href="Regestrieren.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
@@ -288,11 +290,12 @@
 
 
 								</div>
+								<form action="Ticket.php" method="POST">
 								<div class="form-popup" id="RF5">
 
 
-								<button type="button" class="btn btn-secondary" name="id_Termin" style onclick=>22.04.20  18 uhr</button><br>
-								<button type="button" class="btn btn-secondary" onclick=>22.04.20  22 uhr</button><br>
+								<button type="button" class="btn btn-secondary" name=<?php echo '"'.$termin->getId().'"'?> style onclick=><?php echo $termin->convertDatum()?></button><br>
+								<<button type="button" class="btn btn-secondary" name=<?php echo '"'.$termin1->getId().'"'?> style onclick=><?php echo $termin1->convertDatum()?></button><br>
 								<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
 								<button type="button" class="btn cancel" onclick="closeForm5()" style="background-color:red">zurück</button>
 									</form>
