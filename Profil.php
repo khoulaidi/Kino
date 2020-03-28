@@ -97,7 +97,7 @@
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">Ihre Vorname</label>
-							<input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+							<input type="text" class="form-control" id="firstName" placeholder="" value=<?php '"'.$user->getName().'"';?> required>
 
 						</div>
 						<div class="col-md-6 mb-3">
@@ -118,6 +118,12 @@
           <label for="email">Ihre Email</label>
           <input type="email" class="form-control" id="email">
         </div>
+
+				<div class="mb-3">
+					<label for="pass"><h6>Passwort<h6></label>
+					<input type="password" class="form-control" id="pass" name="passwort"style="width:150%" required>
+				</div>
+
 
         <div class="mb-3">
           <label for="address">Ihre Address</label>
