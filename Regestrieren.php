@@ -12,11 +12,12 @@ if(isset($_POST["Registrierung"])){
 	$geburtsdatum = $_POST["geburtsdatum"];
 	$geschlecht = $_POST["geschlecht"];
 
-	//alert($mail." ".$passwort." ".$adresse." ".$nachname." ".$vorname." ".$geburtsdatum." ".$geschlecht.");
+
+	$d = strtotime($geburtsdatum);
+	$date = date('d.m.Y', $d);
 
 
-
-	$u = new _User("$mail", "$passwort","$nachname", "$vorname", "$adresse", "$geburtsdatum", "$geschlecht");
+	$u = new _User("$mail", "$passwort","$nachname", "$vorname", "$adresse", "$date", "$geschlecht");
 
 	if(Connection::insertUser($u)){
 		//$_Session["$u_id"] = $u->getId();
