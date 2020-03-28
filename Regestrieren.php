@@ -91,9 +91,9 @@
 				<a href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Anmelden</strong>
 				</a>
-				<a href="Regestrieren.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				<!--<a href="Regestrieren.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Registrieren</strong>
-				</a>
+				</a>-->
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span> Info
 				</button>

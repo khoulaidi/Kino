@@ -188,6 +188,14 @@
 						<strong>Registrieren</strong>
 					</a>';
 				}
+				else {
+					$user = $_SESSION['user'];
+					$nachname = $user->getNachname();
+					$vorname= $user->getVorname();
+					echo '<a id="Profil" href="Profil.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+						<strong>Hallo, '.$nachname." ".$vorname.'</strong>
+					</a>';
+				}
 				?>
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span> Info
