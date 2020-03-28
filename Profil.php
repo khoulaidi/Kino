@@ -143,6 +143,16 @@
 	</div>
 	<br>
 	<h2>Reservierte Filme:</h2>
+		<?php
+			$list = Connection::searchUserReservation($user->getId());
+
+			foreach($list as $row){
+				$reservation_id = $row["id"];
+				$reservation = Connection::searchReservation($reservation_id);
+
+				echo $reservation->__toString()."<br/>";
+			}
+		?>
 </div>
 
 

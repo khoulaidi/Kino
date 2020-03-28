@@ -54,7 +54,7 @@ class _Reservation{
     $d = strtotime($termin->getDatum());
     $date = date('d.m.Y H:i', $d);
 
-    echo "Name: ".$user["nachname"]." ".$user["vorname"].", Film: ".$film.", Datum: ".$date.", Raum: ".$raum["nummer"].", Sitz: ".$sitz["nummer"].".";
+    echo "Film: ".$film.", Datum: ".$date.", Raum: ".$raum["nummer"].", Sitz: ".$sitz["nummer"].".";
 
     Connection::Disconnect();
   }
