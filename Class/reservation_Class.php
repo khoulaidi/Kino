@@ -56,7 +56,6 @@ class _Reservation{
 
     echo "Film: ".$film.", Datum: ".$date.", Raum: ".$raum["nummer"].", Sitz: ".$sitz["nummer"].".";
 
-    Connection::Disconnect();
   }
 }
 ?>

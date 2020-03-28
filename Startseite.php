@@ -2,6 +2,10 @@
 	require_once("config.php");
 	session_start();
 
+	if(isset($_POST['abmelden'])){
+		session_unset();
+		header("Location: Startseite.php");
+	}
 
 	/*-------------------Database-------------------*/
 	//Filme
@@ -195,6 +199,10 @@
 					echo '<a id="Profil" href="Profil.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 						<strong>Hallo, '.$nachname." ".$vorname.'</strong>
 					</a>';
+					echo '
+					<form action="#" method="post">
+						<button type="submit" class="btn btn-secondary" style name="abmelden">Abmelden</button>
+					</form>';
 				}
 				?>
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">

@@ -6,10 +6,11 @@
 	if(isset($_SESSION['user'])){
 		$user = $_SESSION['user'];
 	}
-	/* Abmelden
-	session_unset();
-	header("Location: Startseite.php");
-	*/
+
+	if(isset($_POST['abmelden'])){
+		session_unset();
+		header("Location: Startseite.php");
+	}
  ?>
 <!doctype html>
 <html lang="en">
@@ -65,9 +66,27 @@
 				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-<!--<a href="file:///C:/Users/ahmed/Desktop/Kino/Profil.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">-->
+				<?php
+				if(!isset($_SESSION['user'])){
+					header("Startseite.php");
+				}
+				else {
+					$user = $_SESSION['user'];
+					$nachname = $user->getNachname();
+					$vorname= $user->getVorname();
+					echo '<a id="Profil" href="Profil.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+						<strong>Hallo, '.$nachname." ".$vorname.'</strong>
+					</a>';
+					echo '
+					<form action="#" method="post">
+						<button type="submit" class="btn btn-secondary" style name="abmelden">Abmelden</button>
+					</form>';
+				}
+				?>
+				<!--<a href="Profil.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Profil</strong>
-				</a>				<!--<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				</a>
+				<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Anmelden</strong>
 				</a>
 				<a href="file:///C:/Users/ahmed/Desktop/Kino/Regestrieren.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
