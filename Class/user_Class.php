@@ -24,10 +24,9 @@ class _User{
     $this->vorname = $vorname;
     $this->adresse = $adresse;
 
-  //  $d = DateTime::createFromFormat('d.m.Y', $geburtsdatum);
-  //  $date = $d->format('Y-m-d');
-  //  $this->geburtsdatum = $date;
-   $this->geburtsdatum = $geburtsdatum;
+    $d = DateTime::createFromFormat('d.m.Y', $geburtsdatum);
+    $date = $d->format('Y-m-d');
+    $this->geburtsdatum = $date;
 
     $this->geschlecht = $geschlecht;
   }
