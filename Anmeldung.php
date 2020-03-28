@@ -1,5 +1,5 @@
 <?php
-require_once("config.php");
+/*require_once("config.php");
 start_session();
 if(isset($_POST["submit"])){
 	$mail = $_POST["email"];
@@ -14,7 +14,7 @@ if(isset($_POST["submit"])){
 		$_Session["$user_id"] = $user_id;
 	}
 }
-
+*/
  ?>
 
 <!doctype html>

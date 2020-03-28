@@ -1,3 +1,48 @@
+<?php
+require_once("config.php");
+
+Connection::Connect();
+
+if(isset($_POST["submit"])){
+	$mail = $_POST["email"];
+	$passwort = $_POST["passwort"];
+	$adresse = $_POST["adresse"];
+	$nachname = $_POST["nachname"];
+	$vorname = $_POST["vorname"];
+	$geburtsdatum = $_POST["geburtsdatum"];
+	$geschlecht = $_POST["geschlecht"];
+
+	//alert($mail." ".$passwort." ".$adresse." ".$nachname." ".$vorname." ".$geburtsdatum." ".$geschlecht.");
+
+
+
+	$u = new _User("$mail", "$passwort","$nachname", "$vorname", "$adresse", "$geburtsdatum", "$geschlecht");
+
+	if(Connection::insertUser($u)){
+		//$_Session["$u_id"] = $u->getId();
+
+	}
+	else {
+		//session_unset();
+	}
+}
+	else {
+		//session_unset();
+	}
+
+//start_session();
+
+	/*if(!$user){
+
+	}
+	else {
+		$user_id = $user->getId();
+		$_Session["$user_id"] = $user_id;
+	}
+}*/
+
+?>
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -73,71 +118,79 @@
 			</div>
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">-Mein Daten:</h4>
-				<h6> Geschlecht:</h6>
-				<div class="form-check">
-					<label class="form-check-label">
-						<input type="radio" class="form-check-input" name="optradio">Frau
-					</label>
-				</div>
-				<div class="form-check">
-					<label class="form-check-label">
-						<input type="radio" class="form-check-input" name="optradio">Herr
-					</label>
-				</div>
+
 		<br>
-		<p>*Achtung*: bitte die folgende buschtabe nicht nutzen:ü,Ü,ö,Ö,ä,Ä.  </p>
+		<p>*Achtung*: bitte die folgende buschtabe nicht nutzen:ü,Ü,ö,Ö,ä,Ä.
+		</p>
 				<!--<form  method="POST" class="needs-validation" novalidate>-->
-	<form action="" class="was-validated">
+	<form action="#" method="post" class="was-validated">
+		<h6> Geschlecht:</h6>
+		<div class="form-check">
+			<label class="form-check-label">
+				<input type="radio" class="form-check-input" value="Frau" name="geschlecht">Frau
+			</label>
+		</div>
+		<div class="form-check">
+			<label class="form-check-label">
+				<input type="radio" class="form-check-input" value="Herr" name="geschlecht">Herr
+			</label>
+		</div>
   <div class="form-group">
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstName"><h6>Vorname<h6></label>
-							<input type="text" class="form-control" id="firstName" placeholder="" value="" name="vorname" required>
+							<input type="text" class="form-control" id="firstName" placeholder="" value="jkhgjj" name="vorname" required>
 							<div class="invalid-feedback">
 								Ein gültiger Nachname ist erforderlich.
 							</div>
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="lastName"><h6>Nachname<h6></label>
-							<input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+							<input type="text" class="form-control" id="lastName" name="nachname" placeholder="" value="" required>
 							<div class="invalid-feedback">
 								Ein gültiger Nachname ist erforderlich.
 							</div>
 						</div>
 					</div>
-				</div>
-			</form>
+
 				<div class="form-group">
-                    <label for="birthDate" class="ol-md-6 mb-3"><h6>Geburtsdatum<h6></label>
+                    <label for="birthDate" class="ol-md-6 mb-3" ><h6>Geburtsdatum<h6></label>
                     <div class="rows">
-                        <input type="date" id="birthDate" class="form-control" style="width:100%">
+                        <input type="date" id="birthDate" name="geburtsdatum" max="2020-04-01" class="form-control" style="width:100%">
                     </div>
                 </div>
 
-		<form action="" class="was-validated">
-			<div class="form-group">
+
         <div class="mb-3">
           <label for="email"><h6>Email<h6></label>
-          <input type="email" class="form-control" id="email" style="width:150%" required>
+          <input type="email" class="form-control" id="email" name="email"style="width:150%" required>
           <div class="invalid-feedback">
             Ein gültiger Email ist erforderlich.
           </div>
         </div>
 
+
+						<div class="mb-3">
+							<label for="pass"><h6>Passwort<h6></label>
+							<input type="password" class="form-control" id="pass" name="passwort"style="width:150%" required>
+							<div class="invalid-feedback">
+								Ein gültiger Passwort ist erforderlich.
+							</div>
+						</div>
+
         <div class="mb-3">
           <label for="address"><h6>Address<h6></label>
-          <input type="text" class="form-control" id="address" style="width:150%" placeholder="goblinstraße-3 66117 saarland" required>
+          <input type="text" class="form-control" id="address" style="width:150%" placeholder="goblinstraße-3 66117 saarland" name ="adresse" required>
           <div class="invalid-feedback">
             Eine gültige Adresse ist erforderlich.
           </div>
         </div>
 
 		 <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" name="regestrieren">Bestätigen</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" name="submit">Bestätigen</button>
 	</div>
 </div>
 	</form>
-
 </div>
 <br>
 </main>
@@ -157,5 +210,8 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
 </body>
+<?php Connection::Disconnect(); ?>
 </html>
