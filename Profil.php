@@ -62,10 +62,10 @@
 		</div>
 		<div class="navbar navbar-dark bg-dark shadow-sm">
 			<div class="container d-flex justify-content-between">
-				<a href="file:///C:/Users/ahmed/Desktop/Kino/Startseite.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
+				<a href="Startseite.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-<a href="file:///C:/Users/ahmed/Desktop/Kino/Profil.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
+<!--<a href="file:///C:/Users/ahmed/Desktop/Kino/Profil.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">-->
 					<strong>Profil</strong>
 				</a>				<!--<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Anmelden</strong>
