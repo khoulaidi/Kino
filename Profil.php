@@ -2,6 +2,14 @@
 	require_once("config.php");
 
 	session_start();
+
+	if(isset($_SESSION['user'])){
+		$user = $_SESSION['user'];
+	}
+	/* Abmelden
+	session_unset();
+	header("Location: Startseite.php");
+	*/
  ?>
 <!doctype html>
 <html lang="en">
@@ -81,14 +89,14 @@
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">-Mein Daten:</h4>
 				<p> Ihre Geschlecht:</p>
-				<div class="form-check">
+				<!--<div class="form-check">
 					<label class="form-check-label">
 						<input type="radio" class="form-check-input" name="optradio">Frau
 					</label>
-				</div>
+				</div>-->
 				<div class="form-check">
 					<label class="form-check-label">
-						<input type="radio" class="form-check-input" name="optradio">Herr
+						<!--<input type="radio" class="form-check-input" name="optradio">--><?php echo $user->getGeschlecht();?>
 					</label>
 				</div>
 		<br>
@@ -96,12 +104,12 @@
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">Ihre Vorname</label>
-							<input type="text" class="form-control" id="firstName" placeholder="" value=<?php '"'.$user->getName().'"';?> required>
+							<input type="text" class="form-control" id="firstName" placeholder="" value=<?php echo '"'.$user->getVorname().'"';?> >
 
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="lastName">Ihre Nachname</label>
-							<input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+							<input type="text" class="form-control" id="lastName" placeholder="" value=<?php echo '"'.$user->getNachname().'"';?>>
 
 						</div>
 					</div>
