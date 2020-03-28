@@ -1,9 +1,18 @@
 <?php
+  session_start();
+
   require_once("config.php");
 
-
   Connection::Connect();
-  /*static function Test(){
+
+
+  if(isset($_POST["termin1"])){
+      //echo $_POST["name"];
+      //echo $_POST["age"];
+      //echo " ".$_POST["submit"];
+      echo " ".$_POST["termin1"];
+  }
+    /*static function Test(){
     $sql= "SELECT * FROM FILM WHERE id = 1";
     $result = self::$con->query($sql);
 
@@ -16,15 +25,15 @@
 
   //USER_TEST
   $user = new _User("zouair@gmail.com", "passwort1", "Khoulaidi", "Zoubair", "Goebenstr. 8 Saarbruecken",
-   "1994-10-27", "Herr");
+   "27.10.1994", "Herr");
 
 
-  if(Connection::insertUser($user)){
+  /*if(Connection::insertUser($user)){
     echo 'Richtig!';
   }
   else {
     echo 'Falsch!';
-  }
+  }*/
 
 
   /*$user->setVorname("Zoubai");
@@ -162,3 +171,6 @@
 
   Connection::Disconnect();
 ?>
+  <form action="#" method=post>
+    <button type="submit" class="btn btn-secondary" value ="ID" name="termin1" style >22.04.20  18 uhr</button><br>
+  </form>

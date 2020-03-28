@@ -1,21 +1,32 @@
 <?php
-/*require_once("config.php");
-start_session();
-if(isset($_POST["submit"])){
-	$mail = $_POST["email"];
-	$passwort = $_POST["passwort"];
-	$user = loginUser($mail, $passwort);
+  session_start();
+  require_once("config.php");
 
-	if(!$user){
 
-	}
-	else {
-		$user_id = $user->getId();
-		$_Session["$user_id"] = $user_id;
-	}
-}
-*/
- ?>
+  if(isset($_SESSION['user'])){
+    header("Location: Startseite.php");
+  }
+  else {
+    if(isset($_POST["submit"])){
+    	$mail = $_POST["email"];
+    	$passwort = $_POST["passwort"];
+    	$user = Connection::loginUser($mail, $passwort);
+
+    	if($user == false){
+        session_unset();
+    	}
+    	else {
+    		$_SESSION['user'] = $user;
+        header("Location: Startseite.php");
+    	}
+    }
+    else {
+      session_unset();
+    }
+  }
+
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -71,9 +82,9 @@ if(isset($_POST["submit"])){
 				<a href="file:///C:/Users/ahmed/Desktop/Startseite.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-				<a href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				<!--<a href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Anmelden</strong>
-				</a>
+				</a>-->
 				<a href="Regestrieren.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Registrieren</strong>
 				</a>
@@ -94,7 +105,7 @@ if(isset($_POST["submit"])){
 <br>
 <br>
 <br>
-    <form class="form-signin" method="post">
+    <form action="?register=2" class="form-signin" method="post">
 
   <h1 class="h3 mb-3 font-weight-normal" style="color:white">Hier Anmelden</h1>
   <label for="inputEmail" class="sr-only">Email address</label>

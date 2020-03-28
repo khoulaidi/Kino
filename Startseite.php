@@ -1,4 +1,88 @@
+<?php
+	require_once("config.php");
+	session_start();
 
+
+	/*-------------------Database-------------------*/
+	//Filme
+	$joker = Connection::searchFilm("Joker");
+	$morbius = Connection::searchFilm("Morbius");
+	$hase = Connection::searchFilm("Hase");
+	$narziss = Connection::searchFilm("Narziss");
+	$night = Connection::searchFilm("Night");
+	$hotel = Connection::searchFilm("Hotel");
+
+	$_SESSION['joker'] = $joker;
+	$_SESSION['morbius'] = $morbius;
+	$_SESSION['hase'] = $hase;
+	$_SESSION['narziss'] = $narziss;
+	$_SESSION['night'] = $night;
+	$_SESSION['hotel'] = $hotel;
+
+	//Säle
+	$raum1 = Connection::searchRaum("1");
+	$raum2 = Connection::searchRaum("2");
+	$raum3 = Connection::searchRaum("3");
+	$raum4 = Connection::searchRaum("4");
+	$raum5 = Connection::searchRaum("5");
+	$raum6 = Connection::searchRaum("6");
+
+	$_SESSION['raum1'] = $raum1;
+	$_SESSION['raum2'] = $raum2;
+	$_SESSION['raum3'] = $raum3;
+	$_SESSION['raum4'] = $raum4;
+	$_SESSION['raum5'] = $raum5;
+	$_SESSION['raum6'] = $raum6;
+
+
+	//Termine
+	$termin1_1 = Connection::searchTermin("127");
+	$termin1_2 = Connection::searchTermin("140");
+	$termin1_3 = Connection::searchTermin("128");
+
+	$termin2_1 = Connection::searchTermin("129");
+	$termin2_2 = Connection::searchTermin("130");
+
+	$termin3_1 = Connection::searchTermin("132");
+	$termin3_2 = Connection::searchTermin("133");
+
+	$termin4_1 = Connection::searchTermin("134");
+	$termin4_2 = Connection::searchTermin("135");
+
+	$termin5_1 = Connection::searchTermin("136");
+	$termin5_2 = Connection::searchTermin("137");
+
+	$termin6_1 = Connection::searchTermin("138");
+	$termin6_2 = Connection::searchTermin("139");
+
+
+	$_SESSION['termin1_1'] = $termin1_1;
+	$_SESSION['termin1_2'] = $termin1_2;
+	$_SESSION['termin1_3'] = $termin1_3;
+
+	$_SESSION['termin2_1'] = $termin2_1;
+	$_SESSION['termin2_2'] = $termin2_2;
+
+	$_SESSION['termin3_1'] = $termin3_1;
+	$_SESSION['termin3_2'] = $termin3_2;
+
+	$_SESSION['termin4_1'] = $termin4_1;
+	$_SESSION['termin4_2'] = $termin4_2;
+
+	$_SESSION['termin5_1'] = $termin5_1;
+	$_SESSION['termin5_2'] = $termin5_2;
+
+	$_SESSION['termin6_1'] = $termin6_1;
+	$_SESSION['termin6_2'] = $termin6_2;
+
+	if(isset($_SESSION['user'])){
+		$user = $_SESSION['user'];
+	}
+	else {
+		//session_unset();
+	}
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -77,14 +161,14 @@
 					<div class="col-sm-8 col-md-7 py-4">
 						<h4 class="text-white">About</h4>
 						<p class="text-muted"> Diese webseite ist ein exslusive Projekt für Internet Technologie.Das ProjektTeam bestehst aus 2 Studenten (Ahmed Baffoun & Ibrahim ....).</p>
-						<p class="text-muted">in Unsere Webseit kann der kinoBesucher ein Ticket für film buchen sowie auch platz Reservieren. </p>
+						<p class="text-muted">in Unserer Webseite kann der Kino-Besucher ein Ticket für Filme buchen sowie auch platz Reservieren. </p>
 					</div>
 					<div class="col-sm-4 offset-md-1 py-4">
 						<h4 class="text-white">Contact</h4>
 						<ul class="list-unstyled">
 							<li><a  class="text-white">Unser Servicecenter ist in der aktuellen Lage nur per Email erreichbar</a></li>
-							<li><a  class="text-white">diese Email kontaktieren:</a></li>
-							<li><a class="text-white">ahmed_baffana@hotmail.com</a></li>
+							<li><a  class="text-white">diese Emaile kontaktieren:</a></li>
+							<li><a class="text-white">ahmed_baffana@hotmail.com & isentissi@htwsaar.de</a></li>
 						</ul>
 					</div>
 				</div>
@@ -95,12 +179,16 @@
 				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-				<a id="anmelden" href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
-					<strong>Anmelden</strong>
-				</a>
-				<a href="Regestrieren.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
-					<strong>Registrieren</strong>
-				</a>
+				<?php
+				if(!isset($_SESSION['user'])){
+					echo '<a id="anmelden" href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+						<strong>Anmelden</strong>
+					</a>';
+					echo '<a href="Regestrieren.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+						<strong>Registrieren</strong>
+					</a>';
+				}
+				?>
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span> Info
 				</button>
@@ -122,23 +210,23 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<div class="info-container">
-							<img src="https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/Fandango/219414/JM2_OnLine_1080x1350_TSR_HERO_RD3DDCIMX_01.jpg" alt="Los Angeles" width="1100" height="500">
+							<img src=<?php echo '"http://'.$image_path.'Jumanji.jpg"';?> alt="Los Angeles" width="1100" height="550">
 								<div style="color:#B1A296" class="slide-title h2 col-xs-24">Demnächst verfügbar</div>
 						</div>
 					</div>
 
 					<div class="carousel-item">
-						<img src="https://m.media-amazon.com/images/M/MV5BMjQ2ODIyMjY4MF5BMl5BanBnXkFtZTgwNzY4ODI2NzM@._V1_.jpg" alt="Chicago" width="1100" height="500">
+						<img src=<?php echo '"http://'.$image_path.'Aladdin.jpg"';?> alt="Chicago" width="1100" height="550">
 							<div style="color:#B1A296"class="slide-title h2 col-xs-24">Demnächst verfügbar</div>
 					</div>
 
 					<div class="carousel-item">
-						<img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Movie_poster_for_%22Scary_Movie%22.jpg/220px-Movie_poster_for_%22Scary_Movie%22.jpg" alt="Chicago" width="1100" height="500">
+						<img src=<?php echo '"http://'.$image_path.'Scary.jpg"';?> alt="Chicago" width="1100" height="550">
 							<div style="color:#B1A296"class="slide-title h2 col-xs-24">Demnächst verfügbar</div>
 					</div>
 
 					<div class="carousel-item">
-						<img src="https://cdn.eventcinemas.co.nz/cdn/resources/movies/14819/images/largeposter.jpg" alt="Chicago" width="1100" height="500">
+						<img src=<?php echo '"http://'.$image_path.'Bloodshot.jpg"';?> alt="Chicago" width="1100" height="550">
 							<div style="color:#B1A296"class="slide-title h2 col-xs-24">Demnächst verfügbar</div>
 					</div>
 
@@ -158,29 +246,49 @@
 		<div class="album py-5 bg-light"   >
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4">
-						<div id="morbius"class="card mb-4 shadow-sm">
-							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/26001-172388poster1-posterjpg.jpg?h=477&iar=1&w=319" alt="Chicago">
-							<div class="card-body"style="background-color:#D3D3D3">
-								<p class="card-text"style="font-family:Roboto, sans-serif"><i>In MORBIUS verkörpert Jared Leto eindrucksvoll eine der geheimnisvollsten Figuren im Marvel-Universum.</i></p>
-								<p class="card-text" style="font-family:arial"> <b>Genre:</b> Action.</p>
-								<p class="card-text"> <b>Filmstart:</b> 06 August 2020.</p>
-								<p class="card-text"> <b>Dauer:</b> 96 mn.</p>
+					<div id="joker"class="col-md-4">
+						<div class="card mb-4 shadow-sm">
+							<img src=<?php echo '"'.$joker->getImage().'"';?>style="height: 477px;"alt="Joker">
+							<div class="card-body" style="background-color:#D3D3D3">
+								<p class="card-text" style="font-family:Roboto, sans-serif" > <?php echo "<i>".$joker->getBeschreibung()."</i>";?></p>
+								<p class="card-text" style="font-family:arial"> <b>Genre:</b>Krimi, Action</p>
+								<p class="card-text"> <b>Filmstart:</b> <?php echo $joker->convertDatum();?></p>
+								<p class="card-text"> <b>Dauer:</b> <?php echo $joker->getDauer();?> min.</p>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
+											<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm3()">Reservieren</button>
+										</div>
+								</div>
+								<div class="form-popup" id="RF3">
+									<form action="Ticket.php" method="get">
+										<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin1_1->getId().'"';?> ><?php echo $termin1_1->convertDatum(); ?></button><br>
+										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin1_2->getId().'"';?> ><?php echo $termin1_2->convertDatum(); ?></button><br>
+										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin1_3->getId().'"';?> ><?php echo $termin1_3->convertDatum(); ?></button><br>
+										<button type="button" class="btn cancel" onclick="closeForm3()" style="background-color:red">zurück</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 
-	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm1()">Reservieren</button>
-</div>
-
-
+					<div class="col-md-4">
+						<div id="morbius"class="card mb-4 shadow-sm">
+							<img src=<?php echo '"'.$morbius->getImage().'"';?> alt="Morbius">
+							<div class="card-body"style="background-color:#D3D3D3">
+								<p class="card-text"style="font-family:Roboto, sans-serif"><?php echo "<i>".$morbius->getBeschreibung()."</i>";?></p>
+								<p class="card-text" style="font-family:arial"> <b>Genre:</b> Action.</p>
+								<p class="card-text"> <b>Filmstart:</b> <?php echo $morbius->convertDatum();?>.</p>
+								<p class="card-text"> <b>Dauer:</b> <?php echo $morbius->getDauer();?> min.</p>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm1()">Reservieren</button>
+									</div>
 								</div>
 								<div class="form-popup" id="RF1">
-
-
-								<button type="button" class="btn btn-secondary" style onclick=>22.04.20  18 uhr</button><br>
-								<button type="button" class="btn btn-secondary" onclick=>22.04.20  22 uhr</button><br>
-								<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
-								<button type="button" class="btn cancel" onclick="closeForm1()" style="background-color:red">zurück</button>
+										<form action="Ticket.php" method="get">
+										<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin2_1->getId().'"';?> ><?php echo $termin2_1->convertDatum(); ?></button><br>
+										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin2_2->getId().'"';?> ><?php echo $termin2_2->convertDatum(); ?></button><br>
+										<button type="button" class="btn cancel" onclick="closeForm1()" style="background-color:red">zurück</button>
 									</form>
 								</div>
 							</div>
@@ -189,56 +297,22 @@
 
 					<div id="peterhase2"class="col-md-4">
 						<div class="card mb-4 shadow-sm">
-							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/26493-170129poster4-posterjpg.jpg?h=477&iar=1&w=319" alt="Chicago">
+							<img src=<?php echo '"'.$hase->getImage().'"';?> alt="PeterHase">
 							<div class="card-body" style="background-color:#D3D3D3">
-								<p class="card-text" style="font-family:Roboto, sans-serif" > <i>Zweites aufregendes Kinoabenteuer für Peter Hase mit Domhnall Gleeson und Rose Byrne.</i></p>
+								<p class="card-text" style="font-family:Roboto, sans-serif" > <?php echo "<i>".$hase->getBeschreibung()."</i>";?></p>
 								<p class="card-text" style="font-family:arial"> <b>Genre:</b> Komödie.</p>
-								<p class="card-text"> <b>Filmstart:</b> 30 juli 2020.</p>
-								<p class="card-text"> <b>Dauer:</b> 80 mn.</p>
+								<p class="card-text"> <b>Filmstart:</b> <?php echo $hase->convertDatum();?>.</p>
+								<p class="card-text"> <b>Dauer:</b> <?php echo $hase->getDauer();?> mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
-																		<div class="btn-group">
-
-	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm2()">Reservieren</button>
-</div>
-
-
+									<div class="btn-group">
+										<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary" onclick="openForm2()">Reservieren</button>
+									</div>
 								</div>
 								<div class="form-popup" id="RF2">
-
-
-								<button type="button" class="btn btn-secondary" style onclick=>22.04.20  18 uhr</button><br>
-								<button type="button" class="btn btn-secondary" onclick=>22.04.20  22 uhr</button><br>
-								<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
-								<button type="button" class="btn cancel" onclick="closeForm2()" style="background-color:red">zurück</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div id="joker"class="col-md-4">
-						<div class="card mb-4 shadow-sm">
-							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/25683-170748poster2-posterjpg.jpg"style="height: 477px;"alt="joki">
-							<div class="card-body" style="background-color:#D3D3D3">
-								<p class="card-text" style="font-family:Roboto, sans-serif" > <i>1981 in Gotham City: Arthur Fleck hat sich geirrt. Sein Dasein ist keine Komödie, sondern eine Tragödie...</i></p>
-								<p class="card-text" style="font-family:arial"> <b>Genre:</b>Krimi, Action</p>
-								<p class="card-text"> <b>Filmstart:</b> 10 Oktober 2019.</p>
-								<p class="card-text"> <b>Dauer:</b> 122 mn.</p>
-								<div class="d-flex justify-content-between align-items-center">
-																		<div class="btn-group">
-
-	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm3()">Reservieren</button>
-</div>
-
-
-								</div>
-								<div class="form-popup" id="RF3">
-
-
-								<button type="button" class="btn btn-secondary" style onclick=>22.04.20  18 uhr</button><br>
-								<button type="button" class="btn btn-secondary" onclick=>22.04.20  22 uhr</button><br>
-								<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
-								<button type="button" class="btn cancel" onclick="closeForm3()" style="background-color:red">zurück</button>
+								</form action="Ticket.php" method="get">
+										<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin3_1->getId().'"';?> ><?php echo $termin3_1->convertDatum(); ?></button><br>
+										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin3_2->getId().'"';?> ><?php echo $termin3_2->convertDatum(); ?></button><br>
+										<button type="button" class="btn cancel" onclick="closeForm2()" style="background-color:red">zurück</button>
 									</form>
 								</div>
 							</div>
@@ -247,12 +321,12 @@
 
 					<div id="narziss"class="col-md-4">
 						<div class="card mb-4 shadow-sm">
-							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/25298-143991poster3-posterjpg.jpg"style="height: 477px;"alt="joki">
+							<img src=<?php echo '"'.$narziss->getImage().'"';?> style="height: 477px;"alt="Narziss">
 							<div class="card-body" style="background-color:#D3D3D3" >
-								<p class="card-text" style="font-family:Roboto, sans-serif"><i>Film von Hermann gleichnamigem Roman über die Freundschaft zwischen zwei gegensätzlichen Männern.</i></p>
+								<p class="card-text" style="font-family:Roboto, sans-serif"><?php echo "<i>".$narziss->getBeschreibung()."</i>";?></p>
 								<p class="card-text" style="font-family:arial"> <b>Genre:</b>Drama</p>
-								<p class="card-text"> <b>Filmstart:</b> 12 März 2020.</p>
-								<p class="card-text"> <b>Dauer:</b> 118 mn.</p>
+								<p class="card-text"> <b>Filmstart:</b> <?php echo $narziss->convertDatum();?>.</p>
+								<p class="card-text"> <b>Dauer:</b> <?php echo $narziss->getDauer();?> mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
 										<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm4()">Reservieren</button>
@@ -261,78 +335,64 @@
 
 								</div>
 								<div class="form-popup" id="RF4">
-
-
-								<button type="button" class="btn btn-secondary" style onclick=>22.04.20  18 uhr</button><br>
-								<button type="button" class="btn btn-secondary" onclick=>22.04.20  22 uhr</button><br>
-								<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
-								<button type="button" class="btn cancel" onclick="closeForm4()" style="background-color:red">zurück</button>
+									<form action="Ticket.php" method="get">
+										<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin4_1->getId().'"';?> ><?php echo $termin4_1->convertDatum(); ?></button><br>
+										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin4_2->getId().'"';?> ><?php echo $termin4_2->convertDatum(); ?></button><br>
+										<button type="button" class="btn cancel" onclick="closeForm4()" style="background-color:red">zurück</button>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
-
-					<div id="hotel"class="col-md-4">
-						<div class="card mb-4 shadow-sm">
-							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/27095-100901658cxxposter1-posterjpg.jpg"style="height: 477px;"alt="joki">
-							<div class="card-body" style="background-color:#D3D3D3" >
-								<p class="card-text" style="font-family:Roboto, sans-serif"><i>Die serbische Romantik-Komödie HOTEL BELGRAD im CinemaxX auf der großen Leinwand.</i></p>
-								<p class="card-text" style="font-family:arial"> <b>Genre:</b>Event</p>
-								<p class="card-text"> <b>Filmstart:</b> 19 März  2020.</p>
-								<p class="card-text"> <b>Dauer:</b> 106 mn.</p>
-								<div class="d-flex justify-content-between align-items-center">
-<div class="btn-group">
-
-	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm()">Reservieren</button>
-</div>
-
-
-								</div>
-								<div class="form-popup" id="myForm">
-
-
-								<button type="button" class="btn btn-secondary" style onclick=>22.04.20  18 uhr</button><br>
-								<button type="button" class="btn btn-secondary" onclick=>22.04.20  22 uhr</button><br>
-								<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
-								<button type="button" class="btn cancel" onclick="closeForm()" style="background-color:red">zurück</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
 
 					<div id="nightlife"class="col-md-4">
 						<div class="card mb-4 shadow-sm">
-							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/26162-172565poster3-posterjpg.jpg"style="height: 477px;"alt="joki">
+							<img src=<?php echo '"'.$night->getImage().'"';?> style="height: 477px;"alt="Nightlife">
 							<div class="card-body" style="background-color:#D3D3D3" >
-								<p class="card-text" style="font-family:Roboto, sans-serif"><i>Regisseur Simon Verhoeven schickt Elyas M'Barek und Palina Rojinski auf das verrückteste Date aller Zeiten.</i></p>
+								<p class="card-text" style="font-family:Roboto, sans-serif"><?php echo "<i>".$night->getBeschreibung()."</i>";?></p>
 								<p class="card-text" style="font-family:arial"> <b>Genre:</b>Komödie</p>
-								<p class="card-text"> <b>Filmstart:</b> 13 Februar  2020.</p>
-								<p class="card-text"> <b>Dauer:</b> 115 mn.</p>
+								<p class="card-text"> <b>Filmstart:</b> <?php echo $night->convertDatum();?>.</p>
+								<p class="card-text"> <b>Dauer:</b> <?php echo $night->getDauer();?> mn.</p>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm()">Reservieren</button>
+									</div>
+								</div>
+								<div class="form-popup" id="myForm">
+									<form action="Ticket.php" method="get">
+										<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin5_1->getId().'"';?> ><?php echo $termin5_1->convertDatum(); ?></button><br>
+										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin5_2->getId().'"';?> ><?php echo $termin5_2->convertDatum(); ?></button><br>
+										<button type="button" class="btn cancel" onclick="closeForm()" style="background-color:red">zurück</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div id="hotel"class="col-md-4">
+						<div class="card mb-4 shadow-sm">
+							<img src=<?php echo '"'.$hotel->getImage().'"';?> style="height: 477px;"alt="Hotel">
+							<div class="card-body" style="background-color:#D3D3D3" >
+								<p class="card-text" style="font-family:Roboto, sans-serif"><?php echo "<i>".$hotel->getBeschreibung()."</i>";?></p>
+								<p class="card-text" style="font-family:arial"> <b>Genre:</b>Event</p>
+								<p class="card-text"> <b>Filmstart:</b> <?php echo $hotel->convertDatum();?>.</p>
+								<p class="card-text"> <b>Dauer:</b> <?php echo $hotel->getDauer();?> mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
 										<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm5()">Reservieren</button>
 									</div>
-
-
 								</div>
-								<!--<form action="Ticket.php" method="POST">-->
+								<form action="Ticket.php" method="get">
 								<div class="form-popup" id="RF5">
-									<button type="button" class="btn btn-secondary" name=<?php echo '"'.$termin->getId().'"'?> style onclick=><?php echo $termin->convertDatum()?></button><br>
-									<<button type="button" class="btn btn-secondary" name=<?php echo '"'.$termin1->getId().'"'?> style onclick=><?php echo $termin1->convertDatum()?></button><br>
-									<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
+									<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin6_1->getId().'"';?> ><?php echo $termin6_1->convertDatum(); ?></button><br>
+									<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin6_2->getId().'"';?> ><?php echo $termin6_2->convertDatum(); ?></button><br>
 									<button type="button" class="btn cancel" onclick="closeForm5()" style="background-color:red">zurück</button>
 								</div>
 									</form>
 							</div>
 						</div>
 					</div>
-
-
-
-
 				</div>
 			</div>
 		</div>

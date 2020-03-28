@@ -1,7 +1,13 @@
+<?php
+	require_once("config.php");
+
+	session_start();
+ ?>
+
 <!doctype html>
 <html lang="en">
 	<head>
-  
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +19,7 @@
 	<title >Ticket</title>
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">		
+	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
 	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
 	<link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
 	<link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
@@ -24,8 +30,8 @@
 		<!-- Custom styles for this template -->
 		<link href="album.css" rel="stylesheet">
 	</head>
-  
-	
+
+
     <header>
 		<div class="collapse bg-dark" id="navbarHeader">
 			<div class="container">
@@ -51,12 +57,12 @@
 				<a href="file:///C:/Users/ahmed/Desktop/Startseite.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-				<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+				<!--<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Anmelden</strong>
 				</a>
 				<a href="file:///C:/Users/ahmed/Desktop/Kino/Regestrieren.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 					<strong>Registrieren</strong>
-				</a>
+				</a>-->
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span> Info
 				</button>
@@ -71,19 +77,41 @@
 	<br>
 	<br>
   <center><div class="card"  style="width:500px">
-			<img class="card-img-top" src="ticket.jpg" alt="Card image">
+			<img class="card-img-top" src=<?php echo '"http://'.$image_path.'Ticket.jpg"';?> alt="Card image">
 			<div class="card-img-overlay">
 				<div class="container" style="
 					height: 200px;
 					width: 280px;
 					padding-left: 55px;
-					
+
 					padding-top: 16px;">
-					
+
+					<?php if(isset($_GET['termin_id'])){
+							$termin_id = $_GET['termin_id'];
+							$reservation = Connection::searchReservationByTermin($termin_id);
+							$u_id = $reservation->getUser();
+							$termin = $reservation->getTermin();
+							$sitz = $reservation->getSitz();
+
+							$termin = Connection::searchTermin($termin);
+					    $user = Connection::searchUserById($u_id);
+					    $film = Connection::searchFilmById($termin->getFilm()); //id
+					    $raum = Connection::searchRaumById($termin->getRaum());
+					    $sitz = Connection::searchSitzById($sitz);
+
+							$d = strtotime($termin->getDatum());
+					    $date = date('d.m.Y H:i', $d);
+
+							echo $user["nachname"]." ".$user["vorname"]."<br/>";
+							echo $film."<br/>";
+							echo $raum["nummer"]." / ".$sitz["nummer"]."<br/>";
+							echo $date;
+
+					} ?>
   <!-- hier werden die info vom daten bank gerufen .sie solten in der richtige reihnfolgen geschrieben werden wie im ticket steht-->		</div>
 
 			</div>
-	</div></center>	
+	</div></center>
 <center> <h2 style="color:#D2C29D"> Reservation bestätigt </h2> </center>
 <center><p style="color:#D2C29D">Vielen Dank & Viel spaß</p><center>
 <center><p> </p></center>
@@ -103,7 +131,7 @@
 <footer class="text-muted" style="background-color:#212529">
 	<div class="container"style="background-color:#212529">
 		<p class="float-right">
-		
+
 			<a href="#">Back to top</a>
 			<br>#diese Webseite steht immer noch in test phase (Beta)
 		</p>

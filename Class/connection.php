@@ -304,7 +304,7 @@ class Connection{
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
 
-        $raum = new _Raum($row["nummer"], $row["Film_id"], $row["kapazitat"]);
+        $raum = new _Raum($row["nummer"], $row["kapazitat"], $row["Film_id"]);
 
         $raum->setId($row["id"]);
 
@@ -682,6 +682,7 @@ class Connection{
       $raum = $termin->getRaum();
 
       if($raum_id == $raum){
+
         $sql_filter = self::$con->query("SELECT Film_id, Raum_id, datum FROM TERMIN
           WHERE Raum_id = '$raum_id' AND id != '$termin_id'");
 
@@ -691,13 +692,14 @@ class Connection{
           }
         }
         else{
-          return false;
+          $sql_update_leer = self::$con->query("UPDATE TERMIN set Film_id = $film_id, Raum_id = '$raum_id',
+             datum = '$date' where id = $termin_id");
+          return $sql_update_leer;
         }
 
         if($sql_filter == true){
           $check1 = 1;
           foreach($list as $row){
-
             $dauer = self::searchDauerById($row["Film_id"]);
             if($dauer == false){
               return false;
@@ -831,6 +833,25 @@ class Connection{
       else
         return -1;
     }
+    static function searchReservationByTermin($termin_id){
+      self::Connect();
+
+      $sql = self::$con->query("SELECT * FROM RESERVATION WHERE Termin_id = '$termin_id'");
+
+      if($sql->num_rows > 0){
+        $row = $sql->fetch_array();
+
+        $reservation = new _Reservation($row["Termin_id"], $row["User_id"], $row["Sitz_id"]);
+
+        $reservation->setId($row["id"]);
+
+        return $reservation;
+      }
+      else{
+        return false;
+      }
+    }
+
 
     static function insertReservation($reservation){
       self::Connect();

@@ -1,46 +1,36 @@
 <?php
-require_once("config.php");
+	require_once("config.php");
 
-Connection::Connect();
+	session_start();
 
-if(isset($_POST["Registrierung"])){
-	$mail = $_POST["email"];
-	$passwort = $_POST["passwort"];
-	$adresse = $_POST["adresse"];
-	$nachname = $_POST["nachname"];
-	$vorname = $_POST["vorname"];
-	$geburtsdatum = $_POST["geburtsdatum"];
-	$geschlecht = $_POST["geschlecht"];
+	Connection::Connect();
 
-
-	$d = strtotime($geburtsdatum);
-	$date = date('d.m.Y', $d);
+	if(isset($_GET["register"])){
+		$mail = $_POST["email"];
+		$passwort = $_POST["passwort"];
+		$adresse = $_POST["adresse"];
+		$nachname = $_POST["nachname"];
+		$vorname = $_POST["vorname"];
+		$geburtsdatum = $_POST["geburtsdatum"];
+		$geschlecht = $_POST["geschlecht"];
 
 
-	$u = new _User("$mail", "$passwort","$nachname", "$vorname", "$adresse", "$date", "$geschlecht");
+		$d = strtotime($geburtsdatum);
+		$date = date('d.m.Y', $d);
 
-	if(Connection::insertUser($u)){
-		//$_Session["$u_id"] = $u->getId();
 
+		$u = new _User("$mail", "$passwort","$nachname", "$vorname", "$adresse", "$date", "$geschlecht");
+
+		if(Connection::insertUser($u)){
+			header("Location: Anmeldung.php");
+		}
+		else {
+			session_unset();
+		}
 	}
 	else {
-		//session_unset();
+		session_unset();
 	}
-}
-	else {
-		//session_unset();
-	}
-
-//start_session();
-
-	/*if(!$user){
-
-	}
-	else {
-		$user_id = $user->getId();
-		$_Session["$user_id"] = $user_id;
-	}
-}*/
 
 ?>
 
@@ -124,7 +114,7 @@ if(isset($_POST["Registrierung"])){
 		<p>*Achtung*: bitte die folgende buschtabe nicht nutzen:ü,Ü,ö,Ö,ä,Ä.
 		</p>
 				<!--<form  method="POST" class="needs-validation" novalidate>-->
-	<form action="#" method="post" class="was-validated">
+	<form action="?register=1" method="post" class="was-validated">
 		<h6> Geschlecht:</h6>
 		<div class="form-check">
 			<label class="form-check-label">

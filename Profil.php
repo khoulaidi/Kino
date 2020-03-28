@@ -1,7 +1,13 @@
+<?php
+	require_once("config.php");
+
+	session_start();
+ ?>
+
 <!doctype html>
 <html lang="en">
 	<head>
-  
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +20,7 @@
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">		
+	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
 	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
 	<link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
 	<link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
@@ -25,8 +31,8 @@
 		<!-- Custom styles for this template -->
 		<link href="album.css" rel="stylesheet">
 	</head>
-  
-	
+
+
     <header>
 		<div class="collapse bg-dark" id="navbarHeader">
 			<div class="container">
@@ -69,10 +75,10 @@
 	<main class="bg-light" role="main" >
 		<br>
 		<div class="container" style="background-color:EBF7E3">
-			
-			
+
+
 			<h2><u>Profil</u></h2>
-	<button id=""type="button" class="btn btn-sm btn-outline-secondary"onclick="">Profil bearbeiten?</button>			
+	<button id=""type="button" class="btn btn-sm btn-outline-secondary"onclick="">Profil bearbeiten?</button>
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">-Mein Daten:</h4>
 				<p> Ihre Geschlecht:</p>
@@ -106,7 +112,7 @@
                         <input type="date" id="birthDate" class="form-control">
                     </div>
                 </div>
-       
+
 
         <div class="mb-3">
           <label for="email">Ihre Email</label>
@@ -116,7 +122,7 @@
         <div class="mb-3">
           <label for="address">Ihre Address</label>
           <input type="text" class="form-control" id="address" placeholder="goblinstraße-3 66117 saarland" required>
-          
+
         </div>
 		</form>
 		 <hr class="mb-4">
@@ -130,12 +136,12 @@
 <br>
 <br>
 <br>
-	
+
 </main>
 	<footer class="text-muted" style="background-color:#212529">
 	<div class="container"style="background-color:#212529">
 		<p class="float-right">
-		
+
 			<a href="#">Back to top</a>
 			<br>#diese Webseite steht immer noch in test phase (Beta)
 		</p>
