@@ -3,7 +3,7 @@ require_once("config.php");
 
 Connection::Connect();
 
-if(isset($_POST["submit"])){
+if(isset($_POST["Registrierung"])){
 	$mail = $_POST["email"];
 	$passwort = $_POST["passwort"];
 	$adresse = $_POST["adresse"];
@@ -187,7 +187,7 @@ if(isset($_POST["submit"])){
         </div>
 
 		 <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" name="submit">Bestätigen</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" name="Registrierung">Bestätigen</button>
 	</div>
 </div>
 	</form>

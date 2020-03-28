@@ -254,10 +254,9 @@
 								<p class="card-text"> <b>Filmstart:</b> 12 März 2020.</p>
 								<p class="card-text"> <b>Dauer:</b> 118 mn.</p>
 								<div class="d-flex justify-content-between align-items-center">
-																		<div class="btn-group">
-
-	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm4()">Reservieren</button>
-</div>
+									<div class="btn-group">
+										<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm4()">Reservieren</button>
+									</div>
 
 
 								</div>
@@ -270,37 +269,6 @@
 								<button type="button" class="btn cancel" onclick="closeForm4()" style="background-color:red">zurück</button>
 									</form>
 								</div>
-							</div>
-						</div>
-					</div>
-
-					<div id="nightlife"class="col-md-4">
-						<div class="card mb-4 shadow-sm">
-							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/26162-172565poster3-posterjpg.jpg"style="height: 477px;"alt="joki">
-							<div class="card-body" style="background-color:#D3D3D3" >
-								<p class="card-text" style="font-family:Roboto, sans-serif"><i>Regisseur Simon Verhoeven schickt Elyas M'Barek und Palina Rojinski auf das verrückteste Date aller Zeiten.</i></p>
-								<p class="card-text" style="font-family:arial"> <b>Genre:</b>Komödie</p>
-								<p class="card-text"> <b>Filmstart:</b> 13 Februar  2020.</p>
-								<p class="card-text"> <b>Dauer:</b> 115 mn.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-
-	<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm5()">Reservieren</button>
-</div>
-
-
-								</div>
-								<form action="Ticket.php" method="POST">
-								<div class="form-popup" id="RF5">
-
-
-								<button type="button" class="btn btn-secondary" name=<?php echo '"'.$termin->getId().'"'?> style onclick=><?php echo $termin->convertDatum()?></button><br>
-								<<button type="button" class="btn btn-secondary" name=<?php echo '"'.$termin1->getId().'"'?> style onclick=><?php echo $termin1->convertDatum()?></button><br>
-								<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
-								<button type="button" class="btn cancel" onclick="closeForm5()" style="background-color:red">zurück</button>
-									</form>
-								</div>
-
 							</div>
 						</div>
 					</div>
@@ -333,6 +301,36 @@
 							</div>
 						</div>
 					</div>
+
+
+					<div id="nightlife"class="col-md-4">
+						<div class="card mb-4 shadow-sm">
+							<img src="https://cdn.cinemaxx.de/-/media/images/cinemaxx/cinemaxxposter/26162-172565poster3-posterjpg.jpg"style="height: 477px;"alt="joki">
+							<div class="card-body" style="background-color:#D3D3D3" >
+								<p class="card-text" style="font-family:Roboto, sans-serif"><i>Regisseur Simon Verhoeven schickt Elyas M'Barek und Palina Rojinski auf das verrückteste Date aller Zeiten.</i></p>
+								<p class="card-text" style="font-family:arial"> <b>Genre:</b>Komödie</p>
+								<p class="card-text"> <b>Filmstart:</b> 13 Februar  2020.</p>
+								<p class="card-text"> <b>Dauer:</b> 115 mn.</p>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm5()">Reservieren</button>
+									</div>
+
+
+								</div>
+								<!--<form action="Ticket.php" method="POST">-->
+								<div class="form-popup" id="RF5">
+									<button type="button" class="btn btn-secondary" name=<?php echo '"'.$termin->getId().'"'?> style onclick=><?php echo $termin->convertDatum()?></button><br>
+									<<button type="button" class="btn btn-secondary" name=<?php echo '"'.$termin1->getId().'"'?> style onclick=><?php echo $termin1->convertDatum()?></button><br>
+									<button type="button" class="btn btn-secondary"onclick=>23.04.20  20 uhr</button><br>
+									<button type="button" class="btn cancel" onclick="closeForm5()" style="background-color:red">zurück</button>
+								</div>
+									</form>
+							</div>
+						</div>
+					</div>
+
+
 
 
 				</div>
