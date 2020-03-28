@@ -96,23 +96,28 @@
 					<?php if(isset($_GET['termin_id'])){
 							$termin_id = $_GET['termin_id'];
 							$reservation = Connection::searchReservationByTermin($termin_id, $u_id);
-							//$u_id = $reservation->getUser();
-							$termin = $reservation->getTermin();
-							$sitz = $reservation->getSitz();
+							if($reservation != false){
+								//$u_id = $reservation->getUser();
+								$termin = $reservation->getTermin();
+								$sitz = $reservation->getSitz();
 
-							$termin = Connection::searchTermin($termin);
-					    $user = Connection::searchUserById($u_id);
-					    $film = Connection::searchFilmById($termin->getFilm()); //id
-					    $raum = Connection::searchRaumById($termin->getRaum());
-					    $sitz = Connection::searchSitzById($sitz);
+								$termin = Connection::searchTermin($termin);
+						    $user = Connection::searchUserById($u_id);
+						    $film = Connection::searchFilmById($termin->getFilm()); //id
+						    $raum = Connection::searchRaumById($termin->getRaum());
+						    $sitz = Connection::searchSitzById($sitz);
 
-							$d = strtotime($termin->getDatum());
-					    $date = date('d.m.Y H:i', $d);
+								$d = strtotime($termin->getDatum());
+						    $date = date('d.m.Y H:i', $d);
 
-							echo $user["nachname"]." ".$user["vorname"]."<br/>";
-							echo $film."<br/>";
-							echo $raum["nummer"]." / ".$sitz["nummer"]."<br/>";
-							echo $date;
+								echo $user["nachname"]." ".$user["vorname"]."<br/>";
+								echo $film."<br/>";
+								echo $raum["nummer"]." / ".$sitz["nummer"]."<br/>";
+								echo $date;
+							}
+							else {
+								header("Location: Startseite.php");
+							}
 
 					} ?>
   <!-- hier werden die info vom daten bank gerufen .sie solten in der richtige reihnfolgen geschrieben werden wie im ticket steht-->		</div>
