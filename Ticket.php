@@ -9,6 +9,11 @@
 	else {
 		$u_id = $_SESSION['user']->getId();
 	}
+
+	if(isset($_POST['abmelden'])){
+		session_unset();
+		header("Location: Startseite.php");
+	}
  ?>
 
 <!doctype html>
@@ -61,15 +66,26 @@
 		</div>
 		<div class="navbar navbar-dark bg-dark shadow-sm">
 			<div class="container d-flex justify-content-between">
-				<a href="file:///C:/Users/ahmed/Desktop/Startseite.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
+				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-				<!--<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
-					<strong>Anmelden</strong>
-				</a>
-				<a href="file:///C:/Users/ahmed/Desktop/Kino/Regestrieren.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
-					<strong>Registrieren</strong>
-				</a>-->
+				<?php
+				if(!isset($_SESSION['user'])){
+					header("Startseite.php");
+				}
+				else {
+					$user = $_SESSION['user'];
+					$nachname = $user->getNachname();
+					$vorname= $user->getVorname();
+					echo '<a id="Profil" href="Profil.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+						<strong>Hallo, '.$nachname." ".$vorname.'</strong>
+					</a>';
+					echo '
+					<form action="#" method="post">
+						<button type="submit" class="btn btn-secondary" style name="abmelden">Abmelden</button>
+					</form>';
+				}
+				?>
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span> Info
 				</button>
