@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="homebg.css">
 
-	<title >Profil</title>
+	<title >Update</title>
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -99,7 +99,6 @@
 
 
 			<h2><u>Profil</u></h2>
-	<a href="Update.php"<button id=""type="button" class="btn btn-sm btn-outline-secondary" action="Update.php">Profil bearbeiten?</button></a>
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">-Mein Daten:</h4>
 				<p> Ihre Geschlecht:</p>
@@ -108,11 +107,9 @@
 						<input type="radio" class="form-check-input" name="optradio">Frau
 					</label>
 				</div>-->
-
-
 				<div class="form-check">
 					<label class="form-check-label">
-						<?php echo $user->getGeschlecht();?>
+					 <?php echo $user->getGeschlecht();?>
 					</label>
 				</div>
 		<br>
@@ -120,58 +117,47 @@
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">Ihre Vorname</label>
-							<input type="text" class="form-control" id="firstName" value=<?php echo '"'.$user->getVorname().'"';?> disabled >
+							<input type="text" class="form-control" id="firstName" placeholder="" value=<?php echo '"'.$user->getVorname().'"';?> >
 
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="lastName">Ihre Nachname</label>
-							<input type="text" class="form-control" id="lastName"  value=<?php echo '"'.$user->getNachname().'"';?>disabled>
+							<input type="text" class="form-control" id="lastName" placeholder="" value=<?php echo '"'.$user->getNachname().'"';?>>
 
 						</div>
 					</div>
 				<div class="form-group">
                     <label for="birthDate" class="ol-md-6 mb-3">Ihre Geburtsdatum</label>
                     <div class="rows">
-                        <input type="date" id="birthDate" class="form-control" value=<?php echo '"'.$user->getGeburtsdatum().'"';?> disabled>
+                        <input type="date" id="birthDate" class="form-control"value=<?php echo '"'.$user->getGeburtsdatum().'"';?>>
                     </div>
                 </div>
 
-
         <div class="mb-3">
           <label for="email">Ihre Email</label>
-          <input type="email" class="form-control" id="email" value=<?php echo '"'.$user->getEmail().'"';?>disabled>
+          <input type="email" class="form-control" id="email"value=<?php echo '"'.$user->getEmail().'"';?>>
         </div>
 
-
+				<div class="mb-3">
+					<label for="pass"><h6>Passwort<h6></label>
+					<input type="password" class="form-control" id="pass" name="passwort"style="width:150%" value=<?php echo '"'.$user->getPasswort().'"';?>>
+				</div>
 
 
         <div class="mb-3">
           <label for="address">Ihre Address</label>
-          <input type="text" class="form-control" id="address" placeholder="goblinstraße-3 66117 saarland"value=<?php echo '"'.$user->getAdresse().'"';?> disabled>
+          <input type="text" class="form-control" id="address" placeholder="goblinstraße-3 66117 saarland" value=<?php echo '"'.$user->getAdresse().'"';?>>
 
         </div>
 		</form>
-
+		 <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">speichern</button>
 	</div>
 	<br>
-	<h2>Reservierte Filme:</h2>
-		<?php
-			$list = Connection::searchUserReservation($user->getId());
-
-			foreach($list as $row){
-				$reservation_id = $row["id"];
-				$reservation = Connection::searchReservation($reservation_id);
-
-				echo $reservation->__toString()."<br/>";
-			}
-		?>
+	
 </div>
 
 
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
