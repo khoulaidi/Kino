@@ -1,16 +1,9 @@
 <?php
-	require_once("config.php");
+  session_start();
+  require_once("config.php");
 
-	session_start();
+?>
 
-	if(isset($_SESSION['user'])){
-		$user = $_SESSION['user'];
-	}
-	/* Abmelden
-	session_unset();
-	header("Location: Startseite.php");
-	*/
- ?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -23,8 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="homebg.css">
 
-	<title >Profil</title>
-
+	<title >Reservation</title>
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
 	<link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -38,9 +30,7 @@
 		<!-- Custom styles for this template -->
 		<link href="album.css" rel="stylesheet">
 	</head>
-
-
-    <header>
+  <header>
 		<div class="collapse bg-dark" id="navbarHeader">
 			<div class="container">
 				<div class="row">
@@ -65,103 +55,57 @@
 				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-<!--<a href="file:///C:/Users/ahmed/Desktop/Kino/Profil.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">-->
-					<strong>Profil</strong>
-				</a>				<!--<a id="anmelden" href="file:///C:/Users/ahmed/Desktop/Kino/Anmeldung.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
-					<strong>Anmelden</strong>
-				</a>
-				<a href="file:///C:/Users/ahmed/Desktop/Kino/Regestrieren.html" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
-					<strong>Registrieren</strong>
-				</a>-->
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span> Info
 				</button>
 			</div>
 		</div>
 	</header>
-	<main class="bg-light" role="main" >
-		<br>
-		<div class="container" style="background-color:EBF7E3">
+  <main class="text-center" style="background-color: #1d1e22 ">
+    <br>
+    <!--<div class="row-->
 
+      <div class="col-md-6 mb-3">
+    <h5 style="color:white"> <bold>Sitzplatz Wahl</h5></bold></center>
+&nbsp<img src=<?php echo '"http://'.$image_path.'Sitze.jpg"';?>  style="width:40%"></center>
+  </div>
 
-			<h2><u>Profil</u></h2>
-	<button id=""type="button" class="btn btn-sm btn-outline-secondary"onclick="">Profil bearbeiten?</button>
-			<div class="col-md-8 order-md-1">
-				<h4 class="mb-3">-Mein Daten:</h4>
-				<p> Ihre Geschlecht:</p>
-				<!--<div class="form-check">
-					<label class="form-check-label">
-						<input type="radio" class="form-check-input" name="optradio">Frau
-					</label>
-				</div>-->
-				<div class="form-check">
-					<label class="form-check-label">
-						<!--<input type="radio" class="form-check-input" name="optradio">--><?php echo $user->getGeschlecht();?>
-					</label>
-				</div>
-		<br>
-				<form class="needs-validation" novalidate>
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="firstName">Ihre Vorname</label>
-							<input type="text" class="form-control" id="firstName" placeholder="" value=<?php echo '"'.$user->getVorname().'"';?> >
+  <div class="col-md-6 mb-3">
+  <form>
 
-						</div>
-						<div class="col-md-6 mb-3">
-							<label for="lastName">Ihre Nachname</label>
-							<input type="text" class="form-control" id="lastName" placeholder="" value=<?php echo '"'.$user->getNachname().'"';?>>
+    <label  style="color:white" for="inputState">Bitte wählen sie ein verfügbar platz aus:</label>
+  <center>  <select id="Platz" class="form-control" style="width:40%"></center>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+    </select>
+  <center>  <hr class="mb-4"></center>
+       <center><button class="btn btn-primary btn-lg btn-block" type="submit" name="Reservation" style="width:35%">jetzt Reservieren</button></center>
+  </form>
+  </div>
+<!--</div>-->
+<p class="text-muted"> &nbsp Beachte*:bereit Reservierte Sitzen wurden nicht  im auswahl menu angzeigt</p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  </main>
 
-						</div>
-					</div>
-				<div class="form-group">
-                    <label for="birthDate" class="ol-md-6 mb-3">Ihre Geburtsdatum</label>
-                    <div class="rows">
-                        <input type="date" id="birthDate" class="form-control">
-                    </div>
-                </div>
-
-
-        <div class="mb-3">
-          <label for="email">Ihre Email</label>
-          <input type="email" class="form-control" id="email">
-        </div>
-
-				<div class="mb-3">
-					<label for="pass"><h6>Passwort<h6></label>
-					<input type="password" class="form-control" id="pass" name="passwort"style="width:150%" required>
-				</div>
-
-
-        <div class="mb-3">
-          <label for="address">Ihre Address</label>
-          <input type="text" class="form-control" id="address" placeholder="goblinstraße-3 66117 saarland" required>
-
-        </div>
-		</form>
-		 <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">speichern</button>
-	</div>
-	<br>
-	<h2>Reservierte Filme:</h2>
-		<?php
-			$list = Connection::searchUserReservation($user->getId());
-
-			foreach($list as $row){
-				$reservation_id = $row["id"];
-				$reservation = Connection::searchReservation($reservation_id);
-
-				echo $reservation->__toString()."<br/>";
-			}
-		?>
-</div>
-
-
-<br>
-<br>
-<br>
-
-</main>
-	<footer class="text-muted" style="background-color:#212529">
+  <footer class="text-muted" style="background-color:#212529">
 	<div class="container"style="background-color:#212529">
 		<p class="float-right">
 
@@ -172,7 +116,6 @@
 		<p>*diese Seite ist nur in Deutschland erreichbar</P>
 	</div>
 </footer>
-
 <body style="background-color:#212529">
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
