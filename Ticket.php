@@ -6,6 +6,9 @@
 	if(!isset($_SESSION['user'])){
 		header("Location: Anmeldung.php");
 	}
+	else {
+		$u_id = $_SESSION['user']->getId();
+	}
  ?>
 
 <!doctype html>
@@ -92,8 +95,8 @@
 
 					<?php if(isset($_GET['termin_id'])){
 							$termin_id = $_GET['termin_id'];
-							$reservation = Connection::searchReservationByTermin($termin_id);
-							$u_id = $reservation->getUser();
+							$reservation = Connection::searchReservationByTermin($termin_id, $u_id);
+							//$u_id = $reservation->getUser();
 							$termin = $reservation->getTermin();
 							$sitz = $reservation->getSitz();
 

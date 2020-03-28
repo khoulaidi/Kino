@@ -833,10 +833,10 @@ class Connection{
       else
         return -1;
     }
-    static function searchReservationByTermin($termin_id){
+    static function searchReservationByTermin($termin_id, $user_id){
       self::Connect();
 
-      $sql = self::$con->query("SELECT * FROM RESERVATION WHERE Termin_id = '$termin_id'");
+      $sql = self::$con->query("SELECT * FROM RESERVATION WHERE Termin_id = '$termin_id' AND User_id = '$user_id'");
 
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
