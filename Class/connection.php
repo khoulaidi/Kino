@@ -48,7 +48,7 @@ class Connection{
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
 
-        return $row["id"];
+        return $row;
       }
       else
         return -1;
@@ -121,7 +121,7 @@ class Connection{
       self::Connect();
 
       $u_id = self::searchUserById($user->getId());
-
+      $id = $u_id["id"];
       if($u_id != -1){
 
         $email = $user->getEmail();
@@ -133,7 +133,7 @@ class Connection{
         $geschlecht = $user->getGeschlecht();
 
         $sql = self::$con->query("UPDATE USER set email ='$email', passwort = '$password', nachname = '$nachname',
-          vorname = '$vorname', adresse = '$adresse', geburtsdatum = '$geburtsdatum', geschlecht = '$geschlecht' where id = $u_id");
+          vorname = '$vorname', adresse = '$adresse', geburtsdatum = '$geburtsdatum', geschlecht = '$geschlecht' where id = $id");
 
         return $sql;
       }

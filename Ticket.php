@@ -133,7 +133,7 @@
 								echo $date;
 							}
 							else {
-								header("Location: Startseite.php");
+								//header("Location: Startseite.php");
 							}
 
 					} ?>
