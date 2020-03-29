@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  Dim 29 mars 2020 à 08:52
+-- Généré le :  Dim 29 mars 2020 à 08:55
 -- Version du serveur :  10.1.40-MariaDB
 -- Version de PHP :  7.3.5
 
@@ -43,7 +43,7 @@ CREATE TABLE `Film` (
 --
 
 INSERT INTO `Film` (`id`, `name`, `beschreibung`, `dauer`, `date_sortie`, `autor`, `image`) VALUES
-(78, 'Joker', '1981 in Gotham City: Arthur Fleck hat sich geirrt. Sein Dasein ist keine KomÃ¶die, sondern eine Tragoedie...', 122, '2019-10-10', 'Todd Phillips', 'http://localhost/Kino/images/Joker.jpg'),
+(78, 'Joker', '1981 in Gotham City: Arthur Fleck hat sich geirrt. Sein Dasein ist keine Komoedie, sondern eine Tragoedie...', 122, '2019-10-10', 'Todd Phillips', 'http://localhost/Kino/images/Joker.jpg'),
 (82, 'Morbius', 'In MORBIUS verkoerpert Jared Leto eindrucksvoll eine der geheimnisvollsten Figuren im Marvel-Universum.', 96, '2020-10-06', 'Todd Matt Sazam', 'http://localhost/Kino/images/Morbius.jpg'),
 (84, 'Peter Hase 2', 'Zweites aufregendes Kinoabenteuer fuer Peter Hase mit Domhnall Gleeson und Rose Byrne.', 80, '2020-07-30', 'Will Gluck', 'http://localhost/Kino/images/Hase.jpg'),
 (85, 'Narziss und Goldmund', 'Film von Hermann gleichnamigem Roman ueber die Freundschaft zwischen zwei gegensaetzlichen Maennern.', 118, '2020-03-12', 'Stefan Ruzowit', 'http://localhost/Kino/images/Narziss.jpg'),
@@ -135,7 +135,7 @@ CREATE TABLE `Sitz` (
 --
 
 INSERT INTO `Sitz` (`id`, `nummer`, `verfugbar`, `Raum_id`) VALUES
-(405, 1, 0, 139),
+(405, 1, 1, 139),
 (406, 2, 1, 139),
 (407, 3, 1, 139),
 (408, 4, 1, 139),
@@ -175,7 +175,7 @@ INSERT INTO `Sitz` (`id`, `nummer`, `verfugbar`, `Raum_id`) VALUES
 (442, 8, 1, 142),
 (443, 9, 1, 142),
 (444, 10, 1, 142),
-(445, 1, 0, 145),
+(445, 1, 1, 145),
 (446, 2, 1, 145),
 (447, 3, 1, 145),
 (448, 4, 1, 145),
@@ -384,7 +384,7 @@ ALTER TABLE `Raum`
 -- AUTO_INCREMENT pour la table `Reservation`
 --
 ALTER TABLE `Reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT pour la table `Sitz`
@@ -402,7 +402,7 @@ ALTER TABLE `Termin`
 -- AUTO_INCREMENT pour la table `User`
 --
 ALTER TABLE `User`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Contraintes pour les tables déchargées
