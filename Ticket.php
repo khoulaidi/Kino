@@ -143,9 +143,11 @@
 
 			</div>
 	</div></center>
+	<br>
+	<br>
 <center> <h2 style="color:#D2C29D"> Reservation bestätigt </h2> </center>
 <center><p style="color:#D2C29D">Vielen Dank & Viel spaß</p><center>
-
+	<br>
 	<br>
 	<br>
 	<br>

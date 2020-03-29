@@ -348,7 +348,7 @@
 
 								</div>
 								<div class="form-popup" id="RF4">
-									<form action="Ticket.php" method="get">
+									<form action="Reservation.php" method="get">
 										<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin4_1->getId().'"';?> ><?php echo $termin4_1->convertDatum(); ?></button><br>
 										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin4_2->getId().'"';?> ><?php echo $termin4_2->convertDatum(); ?></button><br>
 										<button type="button" class="btn cancel" onclick="closeForm4()" style="background-color:red">zurück</button>
