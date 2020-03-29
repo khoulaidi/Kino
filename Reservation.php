@@ -67,16 +67,16 @@
     <br>
     <!--<div class="row-->
 
-      <div class="col-md-6 mb-3">
+    <center>  <div class="col-md-6 mb-3">
     <h5 style="color:white"> <bold>Sitzplatz Wahl</h5></bold></center>
-&nbsp<img src=<?php echo '"http://'.$image_path.'Sitze.jpg"';?>  style="width:40%"></center>
-  </div>
+&nbsp<img src=<?php echo '"http://'.$image_path.'Sitze.jpg"';?>  style="width:30%" ></center>
+</div></center>
 
-  <div class="col-md-6 mb-3">
+  <center><div class="col-md-6 mb-3">
   <form>
 
-    <label  style="color:white" for="inputState">Bitte wählen sie ein verfügbar platz aus:</label>
-  <center>  <select id="Platz" class="form-control" style="width:40%"></center>
+    <label  style="color:white" for="Platz">Bitte wählen sie ein verfügbar platz aus:</label>
+  <select id="Platz" class="form-control" style="width:40%">
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -91,17 +91,9 @@
   <center>  <hr class="mb-4"></center>
        <center><button class="btn btn-primary btn-lg btn-block" type="submit" name="Reservation" style="width:35%">jetzt Reservieren</button></center>
   </form>
-  </div>
+</div></center>
 <!--</div>-->
 <p class="text-muted"> &nbsp Beachte*:bereit Reservierte Sitzen wurden nicht  im auswahl menu angzeigt</p>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
   <br>
   <br>
   <br>
