@@ -126,11 +126,13 @@
 								$d = strtotime($termin->getDatum());
 						    $date = date('d.m.Y H:i', $d);
 
-								echo $user["nachname"]." ".$user["vorname"]."<br/>";
+								echo "<b>".$user["nachname"]." ".$user["vorname"]."</b><br/>";
 								echo '<br/>';
-								echo $film."<br/>";
-								echo $raum["nummer"]." / ".$sitz["nummer"]."<br/>";
-								echo $date;
+								echo "<b>".$film."</b><br/>";
+								echo '<br/>';
+								echo "<b>".$raum["nummer"]." /<br/> ".$sitz["nummer"]."</b><br/>";
+								echo '<br/>';
+								echo "<b>".$date."</b>";
 							}
 							else {
 								//header("Location: Startseite.php");
