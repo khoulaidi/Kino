@@ -19,9 +19,6 @@
         header("Location: Startseite.php");
     	}
     }
-    else {
-      //session_unset();
-    }
   }
 
 
@@ -71,6 +68,7 @@
 							<li><a  class="text-white">Unser Servicecenter ist in der aktuellen Lage nur per Email erreichbar</a></li>
 							<li><a  class="text-white">diese Email kontaktieren:</a></li>
 							<li><a class="text-white">ahmed_baffana@hotmail.com</a></li>
+              <li><a class="text-white">isentissi@htwsaar.de</a></li>
 						</ul>
 					</div>
 				</div>
@@ -144,7 +142,7 @@
 			<a href="#">Back to top</a>
 			<br>#diese Webseite steht immer noch in test phase (Beta)
 		</p>
-		<p>Diese webseit &copy; Ahmed Baffoun</p>
+		<p>Diese webseit &copy; Ahmed Baffoun und Ibrahim Sentissi</p>
 		<p>*diese Seite ist nur in Deutschland erreichbar</P>
 	</div>
 </footer>

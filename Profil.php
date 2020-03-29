@@ -5,6 +5,7 @@
 	if(isset($_POST['abmelden'])){
 		session_unset();
 		header("Location: Startseite.php");
+		Connection::Disconnect();
 	}
 
 	if(isset($_SESSION['user'])){
@@ -85,25 +86,26 @@
 
 	<!--Header------------------------------------------------------------------->
   <header>
- 		<div class="collapse bg-dark" id="navbarHeader">
- 			<div class="container">
- 				<div class="row">
- 					<div class="col-sm-8 col-md-7 py-4">
- 						<h4 class="text-white">About</h4>
- 						<p class="text-muted"> Diese webseite ist ein exslusive Projekt für Internet Technologie.Das ProjektTeam bestehst aus 2 Studenten (Ahmed Baffoun & Ibrahim ....).</p>
- 						<p class="text-muted">in Unserer Webseite kann der Kino-Besucher ein Ticket für Filme buchen sowie auch platz Reservieren. </p>
- 					</div>
- 					<div class="col-sm-4 offset-md-1 py-4">
- 						<h4 class="text-white">Contact</h4>
- 						<ul class="list-unstyled">
- 							<li><a  class="text-white">Unser Servicecenter ist in der aktuellen Lage nur per Email erreichbar</a></li>
- 							<li><a  class="text-white">diese Emaile kontaktieren:</a></li>
- 							<li><a class="text-white">ahmed_baffana@hotmail.com & isentissi@htwsaar.de</a></li>
- 						</ul>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
+		<div class="collapse bg-dark" id="navbarHeader">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-7 py-4">
+						<h4 class="text-white">About</h4>
+						<p class="text-muted"> Diese webseite ist ein exslusive Projekt für Internet Technologie.Das ProjektTeam bestehst aus 2 Studenten (Ahmed Baffoun & Ibrahim ....).</p>
+						<p class="text-muted">in Unsere Webseit kann der kinoBesucher ein Ticket für film buchen sowie auch platz Reservieren. </p>
+					</div>
+					<div class="col-sm-4 offset-md-1 py-4">
+						<h4 class="text-white">Contact</h4>
+						<ul class="list-unstyled">
+							<li><a  class="text-white">Unser Servicecenter ist in der aktuellen Lage nur per Email erreichbar</a></li>
+							<li><a  class="text-white">diese Email kontaktieren:</a></li>
+							<li><a class="text-white">ahmed_baffana@hotmail.com</a></li>
+              <li><a class="text-white">isentissi@htwsaar.de</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
  		<div class="navbar navbar-dark bg-dark shadow-sm">
  			<div class="container d-flex justify-content-between">
  				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
@@ -213,14 +215,14 @@
 <br>
 
 </main>
-	<footer class="text-muted" style="background-color:#212529">
+<footer class="text-muted" style="background-color:#212529">
 	<div class="container"style="background-color:#212529">
 		<p class="float-right">
 
 			<a href="#">Back to top</a>
 			<br>#diese Webseite steht immer noch in test phase (Beta)
 		</p>
-		<p>Diese webseit &copy; Ahmed Baffoun</p>
+		<p>Diese webseit &copy; Ahmed Baffoun und Ibrahim Sentissi</p>
 		<p>*diese Seite ist nur in Deutschland erreichbar</P>
 	</div>
 </footer>
