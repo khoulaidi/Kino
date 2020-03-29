@@ -10,6 +10,9 @@
 	if(isset($_SESSION['user'])){
 		$user = $_SESSION['user'];
 	}
+	else {
+		header("Location: Anmeldung.php");
+	}
 
   if(isset($_GET['register'])){
     if(isset($_POST['speichern'])){
@@ -22,19 +25,24 @@
 
       $passwort = $user->getPasswort();
 
-      if($altpasswort == $passwort){
-        $user->setVorname("$vorname");
-        $user->setNachname("$nachname");
-        $user->setEmail("$email");
-        $user->setPasswort("$neupasswort");
-        $user->setAdresse("$adresse");
+      if($altpasswort == $passwort && !empty($neupasswort)){
+				if(empty($vorname) || empty($nachname) || empty($email)){
+					$_SESSION['update_falsch'] = "Die Daten wurden nicht geändert";
+				}
+				else{
+					$user->setVorname("$vorname");
+	        $user->setNachname("$nachname");
+	        $user->setEmail("$email");
+	        $user->setPasswort("$neupasswort");
+	        $user->setAdresse("$adresse");
 
-        if(Connection::updateUser($user)){
-          header("Location: Profil.php");
-        }
-        else {
-          $_SESSION['update_falsch'] = "Die Daten wurden nicht geändert";
-        }
+	        if(Connection::updateUser($user)){
+	          header("Location: Profil.php");
+	        }
+	        else {
+	          $_SESSION['update_falsch'] = "Die Daten wurden nicht geändert";
+	        }
+				}
       }
       else {
         $_SESSION['passwort_falsch'] = "Altes Passwort ist falsch!";
@@ -178,7 +186,7 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="pass"><h6>neue Passwort<h6></label>
-  					<input type="password" class="form-control" id="pass" name="neupasswort"style="width:170%">
+  					<input type="password" class="form-control" id="pass" name="neupasswort"style="width:170%" required>
 
           </div>
         </div>

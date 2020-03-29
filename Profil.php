@@ -11,6 +11,9 @@
 	if(isset($_SESSION['user'])){
 		$user = $_SESSION['user'];
 	}
+	else {
+		header("Location: Anmeldung.php");
+	}
 
 	if(isset($_POST['Delete'])){
 		$reservation_id = $_POST['Delete'];
