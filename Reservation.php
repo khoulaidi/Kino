@@ -22,6 +22,7 @@
   if(isset($_POST['abmelden'])){
 		session_unset();
 		header("Location: Startseite.php");
+    Connection::Disconnect();
 	}
 ?>
 
@@ -52,7 +53,7 @@
 		<link href="album.css" rel="stylesheet">
 	</head>
   <header>
-		<div class="collapse bg-dark" id="navbarHeader">
+    <div class="collapse bg-dark" id="navbarHeader">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-8 col-md-7 py-4">
@@ -66,6 +67,7 @@
 							<li><a  class="text-white">Unser Servicecenter ist in der aktuellen Lage nur per Email erreichbar</a></li>
 							<li><a  class="text-white">diese Email kontaktieren:</a></li>
 							<li><a class="text-white">ahmed_baffana@hotmail.com</a></li>
+              <li><a class="text-white">isentissi@htwsaar.de</a></li>
 						</ul>
 					</div>
 				</div>
@@ -132,18 +134,18 @@
   <br>
   <br>
   </main>
-
   <footer class="text-muted" style="background-color:#212529">
-	<div class="container"style="background-color:#212529">
-		<p class="float-right">
+  	<div class="container"style="background-color:#212529">
+  		<p class="float-right">
 
-			<a href="#">Back to top</a>
-			<br>#diese Webseite steht immer noch in test phase (Beta)
-		</p>
-		<p>Diese webseit &copy; Ahmed Baffoun</p>
-		<p>*diese Seite ist nur in Deutschland erreichbar</P>
-	</div>
-</footer>
+  			<a href="#">Back to top</a>
+  			<br>#diese Webseite steht immer noch in test phase (Beta)
+  		</p>
+  		<p>Diese webseit &copy; Ahmed Baffoun und Ibrahim Sentissi</p>
+  		<p>*diese Seite ist nur in Deutschland erreichbar</P>
+  	</div>
+  </footer>
+
 <body style="background-color:#212529">
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
