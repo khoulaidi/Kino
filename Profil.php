@@ -145,28 +145,28 @@
 			<a href="Update.php"<button id=""type="button" class="btn btn-sm btn-outline-secondary" action="Update.php">Profil bearbeiten?</button></a>
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">-Mein Daten:</h4>
-				<p> Ihre Geschlecht:</p>
+				<h6> Ihre Geschlecht:</h6>
 				<div class="form-check">
 					<label class="form-check-label">
-						<?php echo $user->getGeschlecht();?>
+						<?php echo '<b>'.$user->getGeschlecht().'</b>';?>
 					</label>
 				</div>
 		<br>
 				<form class="needs-validation" novalidate>
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="firstName">Ihre Vorname</label>
+							<label for="firstName"><h6>Ihre Vorname</h6></label>
 							<input type="text" class="form-control" id="firstName" value=<?php echo '"'.$user->getVorname().'"';?> disabled >
 
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="lastName">Ihre Nachname</label>
+							<label for="lastName"><h6>Ihre Nachname</h6></label>
 							<input type="text" class="form-control" id="lastName"  value=<?php echo '"'.$user->getNachname().'"';?>disabled>
 
 						</div>
 					</div>
 				<div class="form-group">
-                    <label for="birthDate" class="ol-md-6 mb-3">Ihre Geburtsdatum</label>
+                    <label for="birthDate" class="ol-md-6 mb-3"><h6>Ihre Geburtsdatum</h6></label>
                     <div class="rows">
                         <input type="date" id="birthDate" class="form-control" value=<?php echo '"'.$user->getGeburtsdatum().'"';?> disabled>
                     </div>
@@ -174,7 +174,7 @@
 
 
         <div class="mb-3">
-          <label for="email">Ihre Email</label>
+          <label for="email"><h6>Ihre Email</h6></label>
           <input type="email" class="form-control" id="email" value=<?php echo '"'.$user->getEmail().'"';?>disabled>
         </div>
 
@@ -182,7 +182,7 @@
 
 
         <div class="mb-3">
-          <label for="address">Ihre Address</label>
+          <label for="address"><h6>Ihre Address</h6></label>
           <input type="text" class="form-control" id="address" placeholder="goblinstraße-3 66117 saarland"value=<?php echo '"'.$user->getAdresse().'"';?> disabled>
 
         </div>

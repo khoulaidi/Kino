@@ -24,9 +24,13 @@
 
 
   //USER_TEST
-  $user = new _User("zouair@gmail.com", "passwort1", "Khoulaidi", "Zoubair", "Goebenstr. 8 Saarbruecken",
+  $user = new _User("zor@gmail.com", "passwort1", "Khoulaidi", "Zoubair", "Goebenstr. 8 Saarbruecken",
    "27.10.1994", "Herr");
 
+
+   $user->setId("42");
+
+   echo $user->getGeburtsdatum();
 
   /*if(Connection::insertUser($user)){
     echo 'Richtig!';
@@ -36,13 +40,13 @@
   }*/
 
 
-  /*$user->setVorname("Zoubai");
+  $user->setVorname("Zoubai");
   if(Connection::updateUser($user)){
     echo 'Richtig!';
   }
   else {
     echo 'Falsch!';
-  }*/
+  }
 
 
   /*if(Connection::deleteUser($user)){

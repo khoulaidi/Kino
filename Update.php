@@ -3,13 +3,47 @@
 
 	session_start();
 
+  if(isset($_POST['abmelden'])){
+		session_unset();
+		header("Location: Startseite.php");
+	}
 	if(isset($_SESSION['user'])){
 		$user = $_SESSION['user'];
 	}
-	/* Abmelden
-	session_unset();
-	header("Location: Startseite.php");
-	*/
+
+  Connection::Connect();
+
+
+  if(isset($_GET['register'])){
+    if(isset($_POST['speichern'])){
+      $vorname = $_POST['vorname'];
+      $nachname = $_POST['nachname'];
+      $email = $_POST['email'];
+      $altpasswort = $_POST['altpasswort'];
+      $neupasswort = $_POST['neupasswort'];
+      $adresse = $_POST['adresse'];
+
+      $passwort = $user->getPasswort();
+
+      if($altpasswort == $passwort){
+        $user->setVorname("$vorname");
+        $user->setNachname("$nachname");
+        $user->setEmail("$email");
+        $user->setPasswort("$neupasswort");
+        $user->setAdresse("$adresse");
+
+        if(Connection::updateUser($user)){
+          header("Location: Profil.php");
+        }
+        else {
+          $_SESSION['update_falsch'] = "Die Daten wurden nicht geändert";
+        }
+      }
+      else {
+        $_SESSION['passwort_falsch'] = "Altes Passwort ist falsch!";
+      }
+    }
+  }
  ?>
 <!doctype html>
 <html lang="en">
@@ -65,7 +99,7 @@
 				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
-<		<?php
+		<?php
 		if(!isset($_SESSION['user'])){
 			echo '<a id="anmelden" href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 				<strong>Anmelden</strong>
@@ -100,61 +134,67 @@
 
 			<h2><u>Profil</u></h2>
 			<div class="col-md-8 order-md-1">
-				<h4 class="mb-3">-Mein Daten:</h4>
-				<p> Ihre Geschlecht:</p>
-				<!--<div class="form-check">
-					<label class="form-check-label">
-						<input type="radio" class="form-check-input" name="optradio">Frau
-					</label>
-				</div>-->
+				<h4 class="mb-3">-Meine Daten:</h4>
+        <?php
+          if(isset($_SESSION['update_falsch'])){
+            echo '<p style="color:red">'.$_SESSION['update_falsch'].'</p>';
+            unset($_SESSION['update_falsch']);
+          }
+         ?>
+				<h6> Geschlecht:</h6>
 				<div class="form-check">
 					<label class="form-check-label">
-					 <?php echo $user->getGeschlecht();?>
+					 <?php echo '<b>'.$user->getGeschlecht().'</b>';?>
 					</label>
 				</div>
 		<br>
-				<form class="needs-validation" novalidate>
+				<form action="?register=3" method="post" class="needs-validation" novalidate>
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="firstName">Ihre Vorname</label>
-							<input type="text" class="form-control" id="firstName" placeholder="" value=<?php echo '"'.$user->getVorname().'"';?> >
+							<label for="firstName"><h6>Vorname</h6></label>
+							<input type="text" class="form-control" id="firstName"  name="vorname" value=<?php echo '"'.$user->getVorname().'"';?> >
 
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="lastName">Ihre Nachname</label>
-							<input type="text" class="form-control" id="lastName" placeholder="" value=<?php echo '"'.$user->getNachname().'"';?>>
+							<label for="lastName"><h6>Ihre Nachname</h6></label>
+							<input type="text" class="form-control" id="lastName" name="nachname"  value=<?php echo '"'.$user->getNachname().'"';?>>
 
 						</div>
 					</div>
-				<div class="form-group">
-                    <label for="birthDate" class="ol-md-6 mb-3">Ihre Geburtsdatum</label>
-                    <div class="rows">
-                        <input type="date" id="birthDate" class="form-control"value=<?php echo '"'.$user->getGeburtsdatum().'"';?>>
-                    </div>
-                </div>
 
         <div class="mb-3">
-          <label for="email">Ihre Email</label>
-          <input type="email" class="form-control" id="email"value=<?php echo '"'.$user->getEmail().'"';?>>
+          <label for="email"><h6>Ihre Email</h6></label>
+          <input type="email" class="form-control" id="email" name="email" value=<?php echo '"'.$user->getEmail().'"';?>>
         </div>
 
-				<div class="mb-3">
-					<label for="pass"><h6>Passwort<h6></label>
-					<input type="password" class="form-control" id="pass" name="passwort"style="width:150%" value=<?php echo '"'.$user->getPasswort().'"';?>>
-				</div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="pass"><h6>alte Passwort<h6></label>
+  					<input type="password" class="form-control" id="pass" name="altpasswort"style="width:170%">
+            <?php
+              if(isset($_SESSION['passwort_falsch'])){
+                echo '<p style="color:red">'.$_SESSION['passwort_falsch'].'</p>';
+                unset($_SESSION['passwort_falsch']);
+              }
+             ?>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="pass"><h6>neue Passwort<h6></label>
+  					<input type="password" class="form-control" id="pass" name="neupasswort"style="width:170%">
 
+          </div>
+        </div>
 
         <div class="mb-3">
-          <label for="address">Ihre Address</label>
-          <input type="text" class="form-control" id="address" placeholder="goblinstraße-3 66117 saarland" value=<?php echo '"'.$user->getAdresse().'"';?>>
-
+          <label for="address"><h6>Ihre Address<h6></label>
+          <input type="text" class="form-control" id="address" placeholder="goblinstraße-3 66117 saarland" name="adresse" style="width:170%" value=<?php echo '"'.$user->getAdresse().'"';?>>
         </div>
+        <hr class="mb-4">
+           <button class="btn btn-primary btn-lg btn-block" type="submit" name="speichern" value="speichern" >Speichern</button>
 		</form>
-		 <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">speichern</button>
 	</div>
 	<br>
-	
+
 </div>
 
 

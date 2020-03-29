@@ -48,7 +48,7 @@ class Connection{
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
 
-        return $row;
+        return $row["id"];
       }
       else
         return -1;
@@ -120,9 +120,11 @@ class Connection{
     static function updateUser($user){
       self::Connect();
 
-      $u_id = self::searchUserByMail($user->getEmail());
+      $u_id = self::searchUserById($user->getId());
 
       if($u_id != -1){
+
+        $email = $user->getEmail();
         $password = $user->getPasswort();
         $nachname = $user->getNachname();
         $vorname = $user->getVorname();
@@ -130,7 +132,7 @@ class Connection{
         $geburtsdatum = $user->getGeburtsdatum();
         $geschlecht = $user->getGeschlecht();
 
-        $sql = self::$con->query("UPDATE USER set passwort = '$password', nachname = '$nachname',
+        $sql = self::$con->query("UPDATE USER set email ='$email', passwort = '$password', nachname = '$nachname',
           vorname = '$vorname', adresse = '$adresse', geburtsdatum = '$geburtsdatum', geschlecht = '$geschlecht' where id = $u_id");
 
         return $sql;
