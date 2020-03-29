@@ -130,7 +130,7 @@
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstName"><h6>Vorname<h6></label>
-							<input type="text" class="form-control" id="firstName" placeholder="" value="jkhgjj" name="vorname" required>
+							<input type="text" class="form-control" id="firstName" placeholder="" value="" name="vorname" required>
 							<div class="invalid-feedback">
 								Ein gültiger Nachname ist erforderlich.
 							</div>

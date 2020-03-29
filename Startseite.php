@@ -82,9 +82,6 @@
 	if(isset($_SESSION['user'])){
 		$user = $_SESSION['user'];
 	}
-	else {
-		//session_unset();
-	}
 
 ?>
 
