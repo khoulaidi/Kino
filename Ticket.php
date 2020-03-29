@@ -8,10 +8,10 @@
 	else {
 		$u_id = $_SESSION['user']->getId();
 	}
-	if($_SESSION['termin_id']){
-		$termin_id = $_SESSION['termin_id'];
-	}
 	if(isset($_POST['Reservation'])){
+		if($_SESSION['termin_id']){
+			$termin_id = $_SESSION['termin_id'];
+		}
 		$sitz = $_POST['sitz'];
 
 		$reservation = new _Reservation("$termin_id","$u_id","$sitz");
@@ -33,6 +33,25 @@
 			header("Location: Reservation.php");
 		}
 
+	}
+
+	if(isset($_SESSION['Ticket_id'])){
+		$reservation_id = $_SESSION['Ticket_id'];
+		$reservation = Connection::searchReservation("$reservation_id");
+
+		$termin = $reservation->getTermin();
+		$sitz = $reservation->getSitz();
+
+		$termin = Connection::searchTermin($termin);
+		$user= Connection::searchUserById($u_id);
+		$film = Connection::searchFilmById($termin->getFilm()); //id
+		$raum = Connection::searchRaumById($termin->getRaum());
+		$sitz = Connection::searchSitzById($sitz);
+
+		$d = strtotime($termin->getDatum());
+		$date = date('d.m.Y H:i', $d);
+
+		unset($_SESSION['Ticket_id']);
 	}
 
 	if(isset($_POST['abmelden'])){

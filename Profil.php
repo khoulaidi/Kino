@@ -20,6 +20,11 @@
 		}
 	}
 
+	if(isset($_POST['Ticket'])){
+		$reservation_id = $_POST['Ticket'];
+		$_SESSION['Ticket_id'] = $reservation_id;
+		header("Location: Ticket.php");
+	}
 
  ?>
 <!doctype html>
@@ -204,16 +209,18 @@
 		<?php
 			$list = Connection::searchUserReservation($user->getId());
 
-			echo '<form action"#" method="post">';
 			foreach($list as $row){
+				echo '<form action"#" method="post">';
 				$reservation_id = $row["id"];
 				$reservation = Connection::searchReservation($reservation_id);
-
 				echo $reservation->__toString();
 				echo "\t";
-				echo '<button type="submit" class="btn btn-secondary" style name="Delete" value="'.$reservation_id.'">Delete</button><br/><br/>';
+				echo '<button type="submit" class="btn btn-secondary" style name="Delete" value="'.$reservation_id.'">Delete</button>';
+				echo "\t";
+				echo '<button type="submit" class="btn btn-secondary" style name="Ticket" value="'.$reservation_id.'">Ticket</button><br/><br/>';
+				echo '</form>';
 			}
-			echo '</form>';
+
 		?>
 </div>
 
