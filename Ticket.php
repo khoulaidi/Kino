@@ -1,6 +1,5 @@
 <?php
 	require_once("config.php");
-
 	session_start();
 
 	if(!isset($_SESSION['user'])){
@@ -8,6 +7,32 @@
 	}
 	else {
 		$u_id = $_SESSION['user']->getId();
+	}
+	if($_SESSION['termin_id']){
+		$termin_id = $_SESSION['termin_id'];
+	}
+	if(isset($_POST['Reservation'])){
+		$sitz = $_POST['sitz'];
+
+		$reservation = new _Reservation("$termin_id","$u_id","$sitz");
+
+		if(Connection::insertReservation($reservation)){
+			$termin = $reservation->getTermin();
+			$sitz = $reservation->getSitz();
+
+			$termin = Connection::searchTermin($termin);
+			$user= Connection::searchUserById($u_id);
+			$film = Connection::searchFilmById($termin->getFilm()); //id
+			$raum = Connection::searchRaumById($termin->getRaum());
+			$sitz = Connection::searchSitzById($sitz);
+
+			$d = strtotime($termin->getDatum());
+			$date = date('d.m.Y H:i', $d);
+		}
+		else {
+			header("Location: Reservation.php");
+		}
+
 	}
 
 	if(isset($_POST['abmelden'])){
@@ -74,9 +99,9 @@
 					header("Anmeldung.php");
 				}
 				else {
-					$user = $_SESSION['user'];
-					$nachname = $user->getNachname();
-					$vorname= $user->getVorname();
+					$_user = $_SESSION['user'];
+					$nachname = $_user->getNachname();
+					$vorname= $_user->getVorname();
 					echo '<a id="Profil" href="Profil.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
 						<strong>Hallo, '.$nachname." ".$vorname.'</strong>
 					</a>';
@@ -109,21 +134,9 @@
 
 					padding-top: 16px;">
 
-					<?php if(isset($_GET['termin_id'])){
-							$termin_id = $_GET['termin_id'];
-							$reservation = Connection::searchReservationByTermin($termin_id, $u_id);
+					<?php
+
 							if($reservation != false){
-								$termin = $reservation->getTermin();
-								$sitz = $reservation->getSitz();
-
-								$termin = Connection::searchTermin($termin);
-						    $user = Connection::searchUserById($u_id);
-						    $film = Connection::searchFilmById($termin->getFilm()); //id
-						    $raum = Connection::searchRaumById($termin->getRaum());
-						    $sitz = Connection::searchSitzById($sitz);
-
-								$d = strtotime($termin->getDatum());
-						    $date = date('d.m.Y H:i', $d);
 
 								echo "<b>".$user["nachname"]." ".$user["vorname"]."</b><br/>";
 								echo '<br/>';
@@ -135,9 +148,7 @@
 							}
 							else {
 								header("Location: Startseite.php");
-							}
-
-					} ?>
+							} ?>
   <!-- hier werden die info vom daten bank gerufen .sie solten in der richtige reihnfolgen geschrieben werden wie im ticket steht-->		</div>
 
 			</div>

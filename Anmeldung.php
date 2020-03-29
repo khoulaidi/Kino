@@ -1,7 +1,6 @@
 <?php
-  session_start();
   require_once("config.php");
-
+  session_start();
 
   if(isset($_SESSION['user'])){
     header("Location: Startseite.php");
@@ -13,7 +12,7 @@
     	$user = Connection::loginUser($mail, $passwort);
 
     	if($user == false){
-        session_unset();
+        $_SESSION['login_falsch'] = "Email oder Passwort ist falsch";
     	}
     	else {
     		$_SESSION['user'] = $user;
@@ -21,7 +20,7 @@
     	}
     }
     else {
-      session_unset();
+      //session_unset();
     }
   }
 
@@ -116,6 +115,12 @@
  <br>
  <br>
  <br>
+ <?php
+  if(isset($_SESSION['login_falsch'])){
+    echo '<p style="color:white">'.$_SESSION['login_falsch'].'</p>';
+    unset($_SESSION['login_falsch']);
+  }
+  ?>
   <center><button class="btn btn-lg btn-primary btn-block" style="width:15%" type="submit" name="submit">Einlogen</button></center>
   <p class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
 </form>

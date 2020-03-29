@@ -273,7 +273,6 @@ class Connection{
 
       if($sql->num_rows > 0){
         $row = $sql->fetch_assoc();
-
         return $row["id"];
       }
       else{
@@ -293,15 +292,15 @@ class Connection{
       else
         return -1;
     }
-    static function searchRaum($nummer){
+    static function searchRaum($raum_id){
       self::Connect();
 
-      $r_id = self::searchRaumByNummer($nummer);
+      /*$r_id = self::searchRaumByNummer($nummer);
       if($r_id == -1){
         return false;
-      }
+      }*/
 
-      $sql = self::$con->query("SELECT * FROM RAUM WHERE id = '$r_id'");
+      $sql = self::$con->query("SELECT * FROM RAUM WHERE id = '$raum_id'");
 
       if($sql->num_rows > 0){
         $row = $sql->fetch_array();
@@ -352,8 +351,8 @@ class Connection{
 
 
       $r_id = self::searchRaumByNummer($raum->getNummer());
-
       if($r_id != -1){
+
         $film_id = $raum->getFilm();
         $kapazitat = $raum->getKapazitat();
 
@@ -474,24 +473,18 @@ class Connection{
 
       return $sql;
     }
-    static function updateSitz($sitz_id, $verfugbar){
+    static function updateSitz($sitz_id, $verfugbar, $raum_id){
       self::Connect();
 
-      $sql = self::$con->query("UPDATE SITZ set verfugbar = '$verfugbar' where id = $sitz_id");
+      $sql = self::$con->query("UPDATE SITZ set verfugbar = '$verfugbar' where id = $sitz_id AND Raum_id = $raum_id");
 
       return $sql;
     }
-    static function deleteSitz($sitz){
+    static function deleteSitz($sitz_id){
 
-      $s_id = self::searchSitzByObject($sitz);
-      if($s_id != -1){
-        $sql = self::$con->query("DELETE FROM SITZ WHERE id = $s_id");
+        $sql = self::$con->query("DELETE FROM SITZ WHERE id = $sitz_id");
 
         return $sql;
-      }
-      else {
-        return false;
-      }
     }
 
     //Termin_Dienste
@@ -859,6 +852,8 @@ class Connection{
       self::Connect();
 
       $termin_id = $reservation->getTermin();
+      $termin = self::searchTermin($termin_id);
+      $raum_id = $termin->getRaum();
       $user_id = $reservation->getUser();
       $sitz_id = $reservation->getSitz();
 
@@ -866,7 +861,7 @@ class Connection{
       VALUES ('$termin_id', '$user_id', '$sitz_id')");
 
       if($sql == true){
-        self::updateSitz($sitz_id,"0");
+        self::updateSitz($sitz_id,"0",$raum_id);
         return $sql;
       }
       else {
@@ -879,6 +874,10 @@ class Connection{
       $reservation = self::searchReservation($reservation_id);
       $old = $reservation->getSitz();
 
+      $termin = self::searchTermin($reservation->getTermin());
+
+      $raum_id = $termin->getRaum();
+
       if($old != $sitz_id){
         $array = self::searchSitzById($sitz_id);
         if($array == false){
@@ -889,8 +888,8 @@ class Connection{
           $sql = self::$con->query("UPDATE RESERVATION set Sitz_id = '$sitz_id' where id = $reservation_id" );
 
           if($sql == true){
-            self::updateSitz($old,"1");
-            self::updateSitz($sitz_id,"0");
+            self::updateSitz($old,"1", $raum_id);
+            self::updateSitz($sitz_id,"0", $raum_id);
             return $sql;
           }
           else {
@@ -911,6 +910,10 @@ class Connection{
       $sitz = 0;
       $reservation = self::searchReservation($reservation_id);
 
+      $termin = self::searchTermin($reservation->getTermin());
+
+      $raum_id = $termin->getRaum();
+
       if($reservation != false){
         $sitz = $reservation->getSitz();
       }
@@ -921,7 +924,7 @@ class Connection{
       $sql = self::$con->query("DELETE FROM RESERVATION WHERE id = $reservation_id");
 
       if($sql == true){
-        self::updateSitz($sitz,"1");
+        self::updateSitz($sitz,"1", $raum_id);
         return true;
       }
       else {

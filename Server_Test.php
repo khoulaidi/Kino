@@ -1,17 +1,16 @@
 <?php
-  session_start();
 
   require_once("config.php");
 
   Connection::Connect();
 
 
-  if(isset($_POST["termin1"])){
+//if(isset($_POST["termin1"])){
       //echo $_POST["name"];
       //echo $_POST["age"];
       //echo " ".$_POST["submit"];
-      echo " ".$_POST["termin1"];
-  }
+    //  echo " ".$_POST["termin1"];
+  //}
     /*static function Test(){
     $sql= "SELECT * FROM FILM WHERE id = 1";
     $result = self::$con->query($sql);
@@ -40,14 +39,17 @@
   }*/
 
 
-  $user->setVorname("Zoubai");
+  /*$user->setVorname("Zoubai");
   if(Connection::updateUser($user)){
     echo 'Richtig!';
   }
   else {
     echo 'Falsch!';
   }
+*/
+  $array = Connection::listSitze("139");
 
+  //print_r($array);
 
   /*if(Connection::deleteUser($user)){
     echo 'Richtig!';
@@ -85,19 +87,19 @@
 
   //RAUM_TEST + SITZE_TEST
 
-  $raum = new _Raum("2", "10", "77");
+  $raum = new _Raum("6", "10", "89");
 
-  /*if(Connection::insertRaum($raum)){
+  if(Connection::insertRaum($raum)){
     echo 'Richtig!';
   }
   else {
     echo 'Falsch!';
-  }*/
+  }
 
-  $raum->setFilm("77");
+  /*$raum->setFilm("89");
   $raum->setKapazitat("10");
   //$raum->setKapazitat("10"); SITZE WERDEN AUTOMATISCH HINZUGEFÜGT ODER GELÖSCHT SEIN
-  /*if(Connection::updateRaum($raum)){
+  if(Connection::updateRaum($raum)){
     echo 'Richtig!';
   }
   else {

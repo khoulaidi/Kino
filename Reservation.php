@@ -1,13 +1,28 @@
 <?php
-  session_start();
   require_once("config.php");
+  session_start();
 
   if(!isset($_SESSION['user'])){
     header("Location: Anmeldung.php");
   }
   else {
     $user = $_SESSION['user'];
+    $user_id = $user->getId();
+    if(isset($_GET['termin_id'])){
+      $termin_id = $_GET['termin_id'];
+      $_SESSION['termin_id'] = $termin_id;
+      $termin = Connection::searchTermin("$termin_id");
+
+      $raum_id = $termin->getRaum();
+      $array = Connection::listSitze("$raum_id");
+    }
+
   }
+
+  if(isset($_POST['abmelden'])){
+		session_unset();
+		header("Location: Startseite.php");
+	}
 ?>
 
 <!doctype html>
@@ -61,6 +76,23 @@
 				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
+        <?php
+				if(!isset($_SESSION['user'])){
+					header("Anmeldung.php");
+				}
+				else {
+					$user = $_SESSION['user'];
+					$nachname = $user->getNachname();
+					$vorname= $user->getVorname();
+					echo '<a id="Profil" href="Profil.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">
+						<strong>Hallo, '.$nachname." ".$vorname.'</strong>
+					</a>';
+					echo '
+					<form action="#" method="post">
+						<button type="submit" class="btn btn-secondary" style name="abmelden">Abmelden</button>
+					</form>';
+				}
+				?>
 				<button class="navbar-toggler" style="color:#F6D155" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span> Info
 				</button>
@@ -79,23 +111,19 @@
 </div></center>
 
   <center><div class="col-md-6 mb-3">
-  <form>
+  <form action="Ticket.php" method="post">
 
     <label  style="color:white" for="Platz">Bitte wählen sie ein verfügbar platz aus:</label>
-  <select id="Platz" class="form-control" style="width:40%">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-      <option>9</option>
-      <option>10</option>
+    <select id="Platz" class="form-control" name="sitz" style="width:40%">
+      <?php
+          foreach($array as $row){
+            echo '<option value='.$row["id"].'>'.$row["nummer"].'</option>';
+          }
+       ?>
     </select>
+
   <center>  <hr class="mb-4"></center>
-       <center><button class="btn btn-primary btn-lg btn-block" type="submit" name="Reservation" style="width:35%">jetzt Reservieren</button></center>
+       <center><button class="btn btn-primary btn-lg btn-block" type="submit" name="Reservation" value="Reservation" style="width:35%">jetzt Reservieren</button></center>
   </form>
 </div></center>
 <!--</div>-->

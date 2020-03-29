@@ -24,20 +24,33 @@
 	$_SESSION['hotel'] = $hotel;
 
 	//Säle
-	$raum1 = Connection::searchRaum("1");
-	$raum2 = Connection::searchRaum("2");
-	$raum3 = Connection::searchRaum("3");
-	$raum4 = Connection::searchRaum("4");
-	$raum5 = Connection::searchRaum("5");
-	$raum6 = Connection::searchRaum("6");
+	$raum1_1 = Connection::searchRaum("139");
+	$raum1_2 = Connection::searchRaum("151");
+	$raum1_3 = Connection::searchRaum("152");
+	$raum2_1 = Connection::searchRaum("140");
+	$raum2_2 = Connection::searchRaum("153");
+	$raum3_1 = Connection::searchRaum("141");
+	$raum3_2 = Connection::searchRaum("154");
+	$raum4_1 = Connection::searchRaum("142");
+	$raum4_2 = Connection::searchRaum("155");
+	$raum5_1 = Connection::searchRaum("145");
+	$raum5_2 = Connection::searchRaum("156");
+	$raum6_1 = Connection::searchRaum("146");
+	$raum6_2 = Connection::searchRaum("157");
 
-	$_SESSION['raum1'] = $raum1;
-	$_SESSION['raum2'] = $raum2;
-	$_SESSION['raum3'] = $raum3;
-	$_SESSION['raum4'] = $raum4;
-	$_SESSION['raum5'] = $raum5;
-	$_SESSION['raum6'] = $raum6;
-
+	$_SESSION['raum1_1'] = $raum1_1;
+	$_SESSION['raum1_2'] = $raum1_2;
+	$_SESSION['raum1_3'] = $raum1_3;
+	$_SESSION['raum2_1'] = $raum2_1;
+	$_SESSION['raum2_2'] = $raum2_2;
+	$_SESSION['raum3_1'] = $raum3_1;
+	$_SESSION['raum3_2'] = $raum3_2;
+	$_SESSION['raum4_1'] = $raum4_1;
+	$_SESSION['raum4_2'] = $raum4_2;
+	$_SESSION['raum5_1'] = $raum5_1;
+	$_SESSION['raum5_2'] = $raum5_2;
+	$_SESSION['raum6_1'] = $raum6_1;
+	$_SESSION['raum6_2'] = $raum6_2;
 
 	//Termine
 	$termin1_1 = Connection::searchTermin("127");
@@ -273,7 +286,7 @@
 										</div>
 								</div>
 								<div class="form-popup" id="RF3">
-									<form action="Ticket.php" method="get">
+									<form action="Reservation.php" method="get">
 										<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin1_1->getId().'"';?> ><?php echo $termin1_1->convertDatum(); ?></button><br>
 										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin1_2->getId().'"';?> ><?php echo $termin1_2->convertDatum(); ?></button><br>
 										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin1_3->getId().'"';?> ><?php echo $termin1_3->convertDatum(); ?></button><br>
@@ -298,7 +311,7 @@
 									</div>
 								</div>
 								<div class="form-popup" id="RF1">
-										<form action="Ticket.php" method="get">
+										<form action="Reservation.php" method="get">
 										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin2_1->getId().'"';?> ><?php echo $termin2_1->convertDatum(); ?></button><br>
 										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin2_2->getId().'"';?> ><?php echo $termin2_2->convertDatum(); ?></button><br>
 										<button type="button" class="btn cancel" onclick="closeForm1()" style="background-color:red">zurück</button>
@@ -348,7 +361,7 @@
 
 								</div>
 								<div class="form-popup" id="RF4">
-									<form action="Ticket.php" method="get">
+									<form action="Reservation.php" method="get">
 										<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin4_1->getId().'"';?> ><?php echo $termin4_1->convertDatum(); ?></button><br>
 										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin4_2->getId().'"';?> ><?php echo $termin4_2->convertDatum(); ?></button><br>
 										<button type="button" class="btn cancel" onclick="closeForm4()" style="background-color:red">zurück</button>
@@ -372,7 +385,7 @@
 									</div>
 								</div>
 								<div class="form-popup" id="myForm">
-									<form action="Ticket.php" method="get">
+									<form action="Reservation.php" method="get">
 										<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin5_1->getId().'"';?> ><?php echo $termin5_1->convertDatum(); ?></button><br>
 										<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin5_2->getId().'"';?> ><?php echo $termin5_2->convertDatum(); ?></button><br>
 										<button type="button" class="btn cancel" onclick="closeForm()" style="background-color:red">zurück</button>
@@ -396,7 +409,7 @@
 										<button id="hotelres"type="button" class="btn btn-sm btn-outline-secondary"onclick="openForm5()">Reservieren</button>
 									</div>
 								</div>
-								<form action="Ticket.php" method="get">
+								<form action="Reservation.php" method="get">
 								<div class="form-popup" id="RF5">
 									<button type="submit" class="btn btn-secondary" style name="termin_id" value=<?php echo '"'.$termin6_1->getId().'"';?> ><?php echo $termin6_1->convertDatum(); ?></button><br>
 									<button type="submit" class="btn btn-secondary" name="termin_id" value=<?php echo '"'.$termin6_2->getId().'"';?> ><?php echo $termin6_2->convertDatum(); ?></button><br>

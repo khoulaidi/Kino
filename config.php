@@ -6,6 +6,7 @@
   $file = dirname("/Kino/config.php");
   $image_path = $host.$file."/images/";
 
+  Connection::Connect();
   /*static function Test(){
     $sql= "SELECT * FROM FILM WHERE id = 1";
     $result = self::$con->query($sql);

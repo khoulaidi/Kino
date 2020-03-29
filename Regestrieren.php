@@ -1,6 +1,5 @@
 <?php
 	require_once("config.php");
-
 	session_start();
 
 	Connection::Connect();
@@ -147,7 +146,7 @@
 				<div class="form-group">
                     <label for="birthDate" class="ol-md-6 mb-3" ><h6>Geburtsdatum<h6></label>
                     <div class="rows">
-                        <input type="date" id="birthDate" name="geburtsdatum" max="2020-04-01" class="form-control" style="width:100%">
+                        <input type="date" id="birthDate" name="geburtsdatum" max="2020-04-01" value=<?php echo '"'.date("Y-m-d").'"' ?> class="form-control" style="width:100%">
                     </div>
                 </div>
 

@@ -1,7 +1,7 @@
 <?php
 	require_once("config.php");
-
 	session_start();
+
 	if(isset($_POST['abmelden'])){
 		session_unset();
 		header("Location: Startseite.php");
