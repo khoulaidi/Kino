@@ -12,6 +12,14 @@
 		$user = $_SESSION['user'];
 	}
 
+	if(isset($_POST['Delete'])){
+		$reservation_id = $_POST['Delete'];
+
+		if(Connection::deleteReservation("$reservation_id")){
+
+		}
+	}
+
 
  ?>
 <!doctype html>
@@ -26,7 +34,7 @@
      <link rel="stylesheet" type="text/css" href="homebg.css">
 
 		 <!-- Titel-->
- 	<title >startseite</title>
+ 	<title >Profil</title>
 
  	<!-- Favicons -->
  	<link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -91,7 +99,7 @@
 				<div class="row">
 					<div class="col-sm-8 col-md-7 py-4">
 						<h4 class="text-white">About</h4>
-						<p class="text-muted"> Diese webseite ist ein exslusive Projekt für Internet Technologie.Das ProjektTeam bestehst aus 2 Studenten (Ahmed Baffoun & Ibrahim ....).</p>
+						<p class="text-muted"> Diese webseite ist ein exslusive Projekt für Internet Technologie.Das ProjektTeam bestehst aus 2 Studenten (Ahmed Baffoun & Ibrahim Sentissi).</p>
 						<p class="text-muted">in Unsere Webseit kann der kinoBesucher ein Ticket für film buchen sowie auch platz Reservieren. </p>
 					</div>
 					<div class="col-sm-4 offset-md-1 py-4">
@@ -196,12 +204,16 @@
 		<?php
 			$list = Connection::searchUserReservation($user->getId());
 
+			echo '<form action"#" method="post">';
 			foreach($list as $row){
 				$reservation_id = $row["id"];
 				$reservation = Connection::searchReservation($reservation_id);
 
-				echo $reservation->__toString()."<br/>";
+				echo $reservation->__toString();
+				echo "\t";
+				echo '<button type="submit" class="btn btn-secondary" style name="Delete" value="'.$reservation_id.'">Delete</button><br/><br/>';
 			}
+			echo '</form>';
 		?>
 </div>
 
