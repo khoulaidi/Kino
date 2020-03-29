@@ -113,7 +113,6 @@
 							$termin_id = $_GET['termin_id'];
 							$reservation = Connection::searchReservationByTermin($termin_id, $u_id);
 							if($reservation != false){
-								//$u_id = $reservation->getUser();
 								$termin = $reservation->getTermin();
 								$sitz = $reservation->getSitz();
 
@@ -135,7 +134,7 @@
 								echo "<b>".$date."</b>";
 							}
 							else {
-								//header("Location: Startseite.php");
+								header("Location: Startseite.php");
 							}
 
 					} ?>
