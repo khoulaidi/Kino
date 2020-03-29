@@ -58,7 +58,7 @@
 				<div class="row">
 					<div class="col-sm-8 col-md-7 py-4">
 						<h4 class="text-white">About</h4>
-						<p class="text-muted"> Diese webseite ist ein exslusive Projekt für Internet Technologie.Das ProjektTeam bestehst aus 2 Studenten (Ahmed Baffoun & Ibrahim ....).</p>
+						<p class="text-muted"> Diese webseite ist ein exslusive Projekt für Internet Technologie.Das ProjektTeam bestehst aus 2 Studenten (Ahmed Baffoun & Ibrahim Sentissi).</p>
 						<p class="text-muted">in Unsere Webseit kann der kinoBesucher ein Ticket für film buchen sowie auch platz Reservieren. </p>
 					</div>
 					<div class="col-sm-4 offset-md-1 py-4">
