@@ -14,10 +14,10 @@
 	//Filme
 	$joker = Connection::searchFilm("Joker");
 	$morbius = Connection::searchFilm("Morbius");
-	$hase = Connection::searchFilm("Hase");
-	$narziss = Connection::searchFilm("Narziss");
-	$night = Connection::searchFilm("Night");
-	$hotel = Connection::searchFilm("Hotel");
+	$hase = Connection::searchFilm("Peter Hase 2");
+	$narziss = Connection::searchFilm("Narziss und Goldmund");
+	$night = Connection::searchFilm("Night Life");
+	$hotel = Connection::searchFilm("Hotel Beograd");
 
 	$_SESSION['joker'] = $joker;
 	$_SESSION['morbius'] = $morbius;
