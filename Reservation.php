@@ -2,6 +2,12 @@
   session_start();
   require_once("config.php");
 
+  if(!isset($_SESSION['user'])){
+    header("Location: Anmeldung.php");
+  }
+  else {
+    $user = $_SESSION['user'];
+  }
 ?>
 
 <!doctype html>

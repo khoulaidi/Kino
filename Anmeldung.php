@@ -79,7 +79,7 @@
 		</div>
 		<div class="navbar navbar-dark bg-dark shadow-sm">
 			<div class="container d-flex justify-content-between">
-				<a href="file:///C:/Users/ahmed/Desktop/Startseite.html" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
+				<a href="Startseite.php" class="navbar-brand d-flex align-items-center" style="color:#F6D155">
 					<strong>Kinoprogramm</strong>
 				</a>
 				<!--<a href="Anmeldung.php" class="navbar-brand d-flex align-items-center"style="color:#F6D155">

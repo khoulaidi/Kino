@@ -71,7 +71,7 @@
 				</a>
 				<?php
 				if(!isset($_SESSION['user'])){
-					header("Startseite.php");
+					header("Anmeldung.php");
 				}
 				else {
 					$user = $_SESSION['user'];
@@ -127,6 +127,7 @@
 						    $date = date('d.m.Y H:i', $d);
 
 								echo $user["nachname"]." ".$user["vorname"]."<br/>";
+								echo '<br/>';
 								echo $film."<br/>";
 								echo $raum["nummer"]." / ".$sitz["nummer"]."<br/>";
 								echo $date;
@@ -142,7 +143,7 @@
 	</div></center>
 <center> <h2 style="color:#D2C29D"> Reservation bestätigt </h2> </center>
 <center><p style="color:#D2C29D">Vielen Dank & Viel spaß</p><center>
-<center><p> </p></center>
+
 	<br>
 	<br>
 	<br>
